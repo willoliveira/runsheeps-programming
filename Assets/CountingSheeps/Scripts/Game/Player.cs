@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 	public float JumpForce = 1000f;
 	public Transform GroundCheck;
 
-	private GameScreen mGameManager;
+	private Game mGame;
 
 	private bool Jump = false;
 	private bool Grounded = false;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Awake()
 	{
-		mGameManager = GameObject.Find("GameManager").GetComponent<GameScreen>();
+		mGame = GameObject.Find("GameManager").GetComponent<Game>();
 		mRigidbody2D = GetComponent<Rigidbody2D>();
 	}
 
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 	{
 		if (coll.gameObject.tag == "Wall")
 		{
-			mGameManager.OnGameOver();
+			//mGame.OnGameOver();
 		}
 
 		if (coll.gameObject.tag == "DiscardSheep")
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
 	{
 		if (other.gameObject.tag == "ScorePoint")
 		{
-			mGameManager.OnScorePoint();
+			//mGame.OnScorePoint();
 		}
 	}
 }
