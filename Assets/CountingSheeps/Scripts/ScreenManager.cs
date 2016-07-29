@@ -9,6 +9,12 @@ public class ScreenManager : MonoBehaviour
 	public GameObject StoreScreen;
 	public GameObject DailyChallenge;
 
+
+
+	public GameObject previousScreen;
+	public GameObject currentScreen;
+
+
 	private static ScreenManager screenManager;
 
 	public static ScreenManager instance
@@ -35,6 +41,14 @@ public class ScreenManager : MonoBehaviour
 	void Init()
 	{
 
+	}
+
+	public void OpenScreen(GameObject OpenScreen, GameObject CloseScreen)
+	{
+		//
+		CloseScreen.GetComponent<Animator>().SetTrigger("Close");
+		//
+		OpenScreen.GetComponent<Animator>().SetTrigger("Open");
 	}
 
 	public void OpenGame()

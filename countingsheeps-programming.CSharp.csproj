@@ -77,6 +77,7 @@
     <Compile Include="Assets\CountingSheeps\Scripts\Game\Player.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\Game\SpawnChars.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\HideOnAwake.cs" />
+    <Compile Include="Assets\CountingSheeps\Scripts\PanelManager.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\QuitGame.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\ScreenManager.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\TitleScreen.cs" />
