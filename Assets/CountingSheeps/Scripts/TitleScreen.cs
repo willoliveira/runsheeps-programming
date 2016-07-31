@@ -39,7 +39,8 @@ public class TitleScreen : MonoBehaviour {
 
 	public void ScreenExit()
 	{
-		//Debug.Log("ScreenExit");
+		Debug.Log("ScreenExit");
+		gameObject.SetActive(false);
 		//Abre a proxima tela
 	}
 }

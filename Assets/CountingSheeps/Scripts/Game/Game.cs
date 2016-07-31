@@ -20,6 +20,12 @@ public class Game : MonoBehaviour {
 	{
 		Debug.Log("Init");
 	}
+	public void ScreenExit()
+	{
+		Debug.Log("ScreenExit");
+		gameObject.SetActive(false);
+		//Abre a proxima tela
+	}
 
 	//public void RestartGame()
 	//{

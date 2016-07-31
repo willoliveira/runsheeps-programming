@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\CountingSheeps\Scripts\ConfigGame.cs" />
+    <Compile Include="Assets\CountingSheeps\Scripts\DailyChallenge\DailyChallengeScreen.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\Game\Game.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\Game\Player.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\Game\SpawnChars.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\CountingSheeps\Scripts\PanelManager.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\QuitGame.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\ScreenManager.cs" />
+    <Compile Include="Assets\CountingSheeps\Scripts\Store\StoreScreen.cs" />
     <Compile Include="Assets\CountingSheeps\Scripts\TitleScreen.cs" />
   </ItemGroup>
   <ItemGroup>

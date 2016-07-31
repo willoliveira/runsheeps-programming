@@ -9,6 +9,7 @@ public class PanelManager : MonoBehaviour {
 	public Animator initiallyOpen;
 
 	private int m_OpenParameterId;
+	private int m_CloseParameterId;
 	private Animator m_Open;
 	private GameObject m_PreviouslySelected;
 
@@ -18,6 +19,7 @@ public class PanelManager : MonoBehaviour {
 	public void OnEnable()
 	{
 		m_OpenParameterId = Animator.StringToHash (k_OpenTransitionName);
+		m_CloseParameterId = Animator.StringToHash (k_ClosedStateName);
 
 		if (initiallyOpen == null)
 			return;
@@ -35,12 +37,14 @@ public class PanelManager : MonoBehaviour {
 
 		anim.transform.SetAsLastSibling();
 
-		//CloseCurrent();
+		CloseCurrent();
 
 		m_PreviouslySelected = newPreviouslySelected;
 
 		m_Open = anim;
-		m_Open.SetBool(m_OpenParameterId, true);
+		Debug.Log(m_Open.gameObject.name + " - open");
+		//m_Open.SetBool(m_OpenParameterId, true);
+		m_Open.SetTrigger(m_OpenParameterId);
 
 		GameObject go = FindFirstEnabledSelectable(anim.gameObject);
 
@@ -65,7 +69,9 @@ public class PanelManager : MonoBehaviour {
 		if (m_Open == null)
 			return;
 
-		m_Open.SetBool(m_OpenParameterId, false);
+		//m_Open.SetBool(m_OpenParameterId, false);
+		Debug.Log(m_Open.gameObject.name + " - close");
+		m_Open.SetTrigger(m_CloseParameterId);
 		SetSelected(m_PreviouslySelected);
 		StartCoroutine(DisablePanelDeleyed(m_Open));
 		m_Open = null;
@@ -80,13 +86,14 @@ public class PanelManager : MonoBehaviour {
 			if (!anim.IsInTransition(0))
 				closedStateReached = anim.GetCurrentAnimatorStateInfo(0).IsName(k_ClosedStateName);
 
+			
 			wantToClose = !anim.GetBool(m_OpenParameterId);
 
 			yield return new WaitForEndOfFrame();
 		}
 		
-		if (wantToClose)
-			anim.gameObject.SetActive(false);
+		//if (wantToClose)
+		//	anim.gameObject.SetActive(false);
 	}
 
 	private void SetSelected(GameObject go)
