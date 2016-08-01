@@ -13,10 +13,14 @@ public class DailyChallengeScreen : MonoBehaviour {
 	
 	}
 
+	public void ScreenOpen()
+	{
+		//Debug.Log("DailyChallengeScreen ScreenOpen");
+	}
+
 	public void ScreenExit()
 	{
-		Debug.Log("ScreenExit");
+		//Debug.Log("DailyChallengeScreen ScreenExit");
 		gameObject.SetActive(false);
-		//Abre a proxima tela
 	}
 }

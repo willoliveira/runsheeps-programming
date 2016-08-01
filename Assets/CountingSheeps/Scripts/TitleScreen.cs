@@ -37,9 +37,14 @@ public class TitleScreen : MonoBehaviour {
 		//Abre a proxima tela
 	}
 
+	public void ScreenOpen()
+	{
+		Debug.Log("TitleScreen ScreenOpen");
+	}
+
 	public void ScreenExit()
 	{
-		Debug.Log("ScreenExit");
+		Debug.Log("TitleScreen ScreenExit");
 		gameObject.SetActive(false);
 		//Abre a proxima tela
 	}

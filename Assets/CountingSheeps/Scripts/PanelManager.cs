@@ -27,6 +27,24 @@ public class PanelManager : MonoBehaviour {
 		OpenPanel(initiallyOpen);
 	}
 
+	public void OpenPopUp (Animator anim)
+	{
+		if (m_Open == anim)
+			return;
+
+		anim.gameObject.SetActive(true);
+
+		m_Open.SetTrigger(m_OpenParameterId);
+	}
+
+	public void ClosePopUp(Animator anim)
+	{
+		if (m_Open == anim)
+			return;
+
+		m_Open.SetTrigger(m_CloseParameterId);
+	}
+
 	public void OpenPanel (Animator anim)
 	{
 		if (m_Open == anim)
@@ -42,7 +60,7 @@ public class PanelManager : MonoBehaviour {
 		m_PreviouslySelected = newPreviouslySelected;
 
 		m_Open = anim;
-		Debug.Log(m_Open.gameObject.name + " - open");
+
 		//m_Open.SetBool(m_OpenParameterId, true);
 		m_Open.SetTrigger(m_OpenParameterId);
 
@@ -70,10 +88,10 @@ public class PanelManager : MonoBehaviour {
 			return;
 
 		//m_Open.SetBool(m_OpenParameterId, false);
-		Debug.Log(m_Open.gameObject.name + " - close");
+
 		m_Open.SetTrigger(m_CloseParameterId);
 		SetSelected(m_PreviouslySelected);
-		StartCoroutine(DisablePanelDeleyed(m_Open));
+		//StartCoroutine(DisablePanelDeleyed(m_Open));
 		m_Open = null;
 	}
 

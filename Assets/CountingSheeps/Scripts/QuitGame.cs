@@ -25,14 +25,17 @@ public class QuitGame : MonoBehaviour
 		{
 			if (!QuitScreen.activeSelf)
 			{
-				if (Time.timeScale == 0)
-				{
-					yetPaused = true;
-				}
-				else
-				{
-					Time.timeScale = 0;
-				}
+				//if (Time.timeScale == 0)
+				//{
+				//	yetPaused = true;
+				//}
+				//else
+				//{
+				//	Time.timeScale = 0;
+				//}
+
+				GameManager.Pause = true;
+
 				QuitScreen.SetActive(true);
 			}
 			else
@@ -57,8 +60,11 @@ public class QuitGame : MonoBehaviour
 	/// </summary>
 	public void OnButtonCancel()
 	{
-		if (!yetPaused)
-			Time.timeScale = 1;
+		//if (!yetPaused)
+		//	Time.timeScale = 1;
+
+		GameManager.Pause = false;
+
 		QuitScreen.SetActive(false);
 
 		yetPaused = false;
