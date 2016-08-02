@@ -18,7 +18,7 @@ public class AdManager : MonoBehaviour {
 		options.resultCallback = HandleShowResult;
 
 		if (GUI.Button(buttonRect, buttonText))
-		{
+		{ 
 			Advertisement.Show(zoneId, options);
 		}
 	}
