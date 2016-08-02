@@ -1,5 +1,5 @@
 5.3.5f1:2.2.0.0
-StandaloneWindows
+Android
 D:/Programas/Editor/Data/Managed/UnityEngine.dll
 D:/Programas/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll
 D:/Programas/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll

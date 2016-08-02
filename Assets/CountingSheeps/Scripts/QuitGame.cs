@@ -14,8 +14,6 @@ public class QuitGame : MonoBehaviour
 
 	#region PRIVATE VARS
 	private bool QuitOpen;
-
-	bool yetPaused = false;
 	#endregion
 	
 	// Update is called once per frame
@@ -25,15 +23,6 @@ public class QuitGame : MonoBehaviour
 		{
 			if (!QuitScreen.activeSelf)
 			{
-				//if (Time.timeScale == 0)
-				//{
-				//	yetPaused = true;
-				//}
-				//else
-				//{
-				//	Time.timeScale = 0;
-				//}
-
 				GameManager.Pause = true;
 
 				QuitScreen.SetActive(true);
@@ -52,22 +41,15 @@ public class QuitGame : MonoBehaviour
 	public void OnButtonOk()
 	{
 		Quit();
-
-		yetPaused = false;
 	}
 	/// <summary>
 	/// 
 	/// </summary>
 	public void OnButtonCancel()
 	{
-		//if (!yetPaused)
-		//	Time.timeScale = 1;
-
 		GameManager.Pause = false;
 
 		QuitScreen.SetActive(false);
-
-		yetPaused = false;
 	}
 	#endregion
 
