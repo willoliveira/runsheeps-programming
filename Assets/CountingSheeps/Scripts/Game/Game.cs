@@ -6,6 +6,8 @@ public class Game : MonoBehaviour {
 
 	#region PUBLIC VARS
 	public GameObject GameOverScreen;
+	public GameObject QuitGame;
+
 	public Text ScoreText;
 	public GameObject spawnChars;
 	#endregion
@@ -22,7 +24,9 @@ public class Game : MonoBehaviour {
 	}
 
 	#region PUBLIC METHODS
-	
+	/// <summary>
+	/// 
+	/// </summary>
 	public void ScreenOpen()
 	{
 		Init();
@@ -30,21 +34,26 @@ public class Game : MonoBehaviour {
 		GameManager.Pause = false;
 		//Debug.Log("Game ScreenOpen");
 	}
-
+	/// <summary>
+	/// 
+	/// </summary>
 	public void ScreenExit()
 	{
 		//Debug.Log("Game ScreenExit");
 		gameObject.SetActive(false);
 		//Abre a proxima tela
 	}
-
+	/// <summary>
+	/// 
+	/// </summary>
 	public void Init()
 	{
 		Debug.Log(mSpawnChars);
 		mSpawnChars.InitGame(this);
 	}
-
-	//Pensar se deixo esses metodos staticos depois...
+	/// <summary>
+	/// 
+	/// </summary>
 	public void RestartGame()
 	{
 		//limpa os personagens da tela
@@ -58,7 +67,9 @@ public class Game : MonoBehaviour {
 		//Time.timeScale = 1;
 		GameManager.Pause = false;
 	}
-
+	/// <summary>
+	/// 
+	/// </summary>
 	public void OnGameOver()
 	{
 		//
@@ -69,7 +80,40 @@ public class Game : MonoBehaviour {
 		//inicia a contagem de score
 		GameOverScreen.GetComponent<GameOver>().ShowScore(Score);
 	}
+	/// <summary>
+	/// 
+	/// </summary>
+	public void OnGameQuitOpen()
+	{
+		//habilita a tela
+		QuitGame.SetActive(true);
+		//Pausa o jogo
+		GameManager.Pause = true;
+	}
+	/// <summary>
+	/// 
+	/// </summary>
+	public void OnQuitGame()
+	{
+		//desabilita a tela
+		QuitGame.SetActive(false);
 
+		mSpawnChars.Clear();
+	}
+	/// <summary>
+	/// 
+	/// </summary>
+	public void OnQuitGameCancel()
+	{
+		//desabilita a tela
+		QuitGame.SetActive(false);
+		//Despausa o jogo
+		GameManager.Pause = false;
+	}
+
+	/// <summary>
+	/// 
+	/// </summary>
 	public void OnScoreGoal()
 	{
 		mSpawnChars.Scored();

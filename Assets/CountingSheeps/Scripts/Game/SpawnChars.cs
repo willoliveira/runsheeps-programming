@@ -30,8 +30,6 @@ public class SpawnChars : MonoBehaviour {
 
 	void Update()
 	{
-		//pauseBefore = GameManager.Pause;
-		
 		if (flagInitGame && !GameManager.Pause)
 		{
 			UpdateChars();
@@ -44,21 +42,6 @@ public class SpawnChars : MonoBehaviour {
 				TimeAmount = 0;
 			}
 		}
-
-
-
-		//pauseLater = GameManager.Pause;
-
-		////assim que mudar o estado do pause
-		//if (GameManager.Pause && pauseBefore != pauseLater)
-		//{
-			
-		//}
-		//else
-		//{
-		//	//volta a chamar os personagens
-		//	InvokeRepeating("OnSpawnChars", 0, TimeToSpawn);
-		//}
 	}
 
 	/// <summary>
@@ -86,6 +69,14 @@ public class SpawnChars : MonoBehaviour {
 		ArrPlayers.Clear();
 	}
 	/// <summary>
+	/// quando faz um ponto, remove um personagem do array que uso para armazenar os personagens gerados
+	/// </summary>
+	public void Scored()
+	{
+		ArrPlayers.RemoveAt(0);
+	}
+
+	/// <summary>
 	/// Gera os personagens
 	/// </summary>
 	private void OnSpawnChars()
@@ -102,18 +93,12 @@ public class SpawnChars : MonoBehaviour {
 	/// <summary>
 	/// Metodo update
 	/// </summary>
-	void UpdateChars()
+	private void UpdateChars()
 	{
 		if (Input.GetButtonDown("Jump") || Input.touchCount > 0)
 		{
 			ArrPlayers[0].GetComponent<Player>().JumpAction();
 		}
 	}
-	/// <summary>
-	/// quando faz um ponto, remove um personagem do array que uso para armazenar os personagens gerados
-	/// </summary>
-	public void Scored()
-	{
-		ArrPlayers.RemoveAt(0);
-	}
+	
 }
