@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+
+// TODO: FAZER UM METODO GENERICO PARA POP UP
+// TODO: Pensar em um modo de fazer aquele lance de uma contagem pro jogo voltar a rodar, entao, deveria passar pelo menos lugar o pause do jogo, sei la
 public class Game : MonoBehaviour {
 
 	#region PUBLIC VARS
@@ -29,6 +32,9 @@ public class Game : MonoBehaviour {
 	/// </summary>
 	public void ScreenOpen()
 	{
+		//seta e tela atual
+		GameManager.CurrentScreen = Screens.Game;
+		//inicia o game
 		Init();
 
 		GameManager.Pause = false;
@@ -43,14 +49,7 @@ public class Game : MonoBehaviour {
 		gameObject.SetActive(false);
 		//Abre a proxima tela
 	}
-	/// <summary>
-	/// 
-	/// </summary>
-	public void Init()
-	{
-		Debug.Log(mSpawnChars);
-		mSpawnChars.InitGame(this);
-	}
+	
 	/// <summary>
 	/// 
 	/// </summary>
@@ -123,6 +122,18 @@ public class Game : MonoBehaviour {
 	{
 		Score++;
 		ScoreText.text = string.Format("{0:000}", Score);
+	}
+	#endregion
+
+
+	#region PRIVATE METHODS
+	/// <summary>
+	/// 
+	/// </summary>
+	private void Init()
+	{
+		Debug.Log(mSpawnChars);
+		mSpawnChars.InitGame(this);
 	}
 	#endregion
 }

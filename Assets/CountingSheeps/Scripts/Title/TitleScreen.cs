@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DailyChallengeScreen : MonoBehaviour {
+public class TitleScreen : MonoBehaviour {
+	
 
 	// Use this for initialization
 	void Start () {
@@ -15,14 +16,13 @@ public class DailyChallengeScreen : MonoBehaviour {
 
 	public void ScreenOpen()
 	{
-		//Debug.Log("DailyChallengeScreen ScreenOpen");
 		//seta e tela atual
-		GameManager.CurrentScreen = Screens.DailyChallenge;
+		GameManager.CurrentScreen = Screens.Title;
 	}
 
 	public void ScreenExit()
 	{
-		//Debug.Log("DailyChallengeScreen ScreenExit");
 		gameObject.SetActive(false);
+		//Abre a proxima tela
 	}
 }

@@ -16,6 +16,8 @@ public class StoreScreen : MonoBehaviour {
 	public void ScreenOpen()
 	{
 		//Debug.Log("StoreScreen ScreenOpen");
+		//seta e tela atual
+		GameManager.CurrentScreen = Screens.Store;
 	}
 
 	public void ScreenExit()
