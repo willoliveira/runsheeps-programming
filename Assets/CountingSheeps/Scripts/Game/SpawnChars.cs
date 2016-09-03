@@ -97,7 +97,7 @@ public class SpawnChars : MonoBehaviour {
 	{
 		if (Input.GetButtonDown("Jump") || Input.touchCount > 0)
 		{
-			ArrPlayers[0].GetComponent<Player>().JumpAction();
+			if (ArrPlayers.Count > 0) ArrPlayers[0].GetComponent<Player>().JumpAction();
 		}
 	}
 	

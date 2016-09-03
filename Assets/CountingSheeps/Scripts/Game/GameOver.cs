@@ -21,7 +21,7 @@ public class GameOver : MonoBehaviour {
 		scoreText.text = string.Format("{0:000}", score);
 
 		//meio gambs só pra testar
-		pointsText.text = string.Format("{0:000}", score);
-		XPText.text = string.Format("{0:000}", score);
+		//pointsText.text = string.Format("{0:000}", score);
+		//XPText.text = string.Format("{0:000}", score);
 	}
 }

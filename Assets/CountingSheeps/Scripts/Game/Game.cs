@@ -23,35 +23,34 @@ public class Game : MonoBehaviour {
 
 	void Start()
 	{
+		//pega a referencia da classe que faz o spawn das ovelhas
 		mSpawnChars = spawnChars.GetComponent<SpawnChars>();
+
 	}
 
 	#region PUBLIC METHODS
 	/// <summary>
-	/// 
+	/// Chamado com a janela é aberta
 	/// </summary>
 	public void ScreenOpen()
 	{
 		//seta e tela atual
 		GameManager.CurrentScreen = Screens.Game;
-		//inicia o game
-		Init();
-
 		GameManager.Pause = false;
-		//Debug.Log("Game ScreenOpen");
+		//inicia o game
+		Init();		
 	}
 	/// <summary>
-	/// 
+	/// Chamado com a janela é fechada
 	/// </summary>
 	public void ScreenExit()
 	{
-		//Debug.Log("Game ScreenExit");
+		//quando a tela termina de sair, desativa ela
 		gameObject.SetActive(false);
-		//Abre a proxima tela
 	}
 	
 	/// <summary>
-	/// 
+	/// Retart game
 	/// </summary>
 	public void RestartGame()
 	{
