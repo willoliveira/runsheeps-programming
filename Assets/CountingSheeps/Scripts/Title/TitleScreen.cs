@@ -2,17 +2,8 @@
 using System.Collections;
 
 public class TitleScreen : MonoBehaviour {
-	
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public GameObject mCamera;  
 
 	public void ScreenOpen()
 	{
@@ -24,5 +15,9 @@ public class TitleScreen : MonoBehaviour {
 	{
 		gameObject.SetActive(false);
 		//Abre a proxima tela
+	}
+
+	public void OnInitGame() {
+		mCamera.GetComponent<Animator>().SetTrigger("StartGame");
 	}
 }

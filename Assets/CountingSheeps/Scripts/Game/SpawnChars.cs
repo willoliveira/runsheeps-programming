@@ -97,7 +97,11 @@ public class SpawnChars : MonoBehaviour {
 	{
 		if (Input.GetButtonDown("Jump") || Input.touchCount > 0)
 		{
-			if (ArrPlayers.Count > 0) ArrPlayers[0].GetComponent<Player>().JumpAction();
+			//se houver ovelhas na tela
+			if (ArrPlayers.Count > 0)
+			{
+				ArrPlayers[0].GetComponent<Player>().JumpAction();
+			}
 		}
 	}
 	
