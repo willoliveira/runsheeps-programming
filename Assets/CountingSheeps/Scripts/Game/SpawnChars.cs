@@ -11,7 +11,7 @@ public class SpawnChars : MonoBehaviour {
 	public GameObject Container;
 	
 	//tempo para criar as ovelhas
-	public float TimeToSpawn = 0.6f;
+	public float TimeToSpawn = 1.5f;
 	#endregion
 
 	#region PRIVATE VARS
