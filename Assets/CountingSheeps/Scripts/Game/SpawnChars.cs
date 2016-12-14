@@ -11,7 +11,9 @@ public class SpawnChars : MonoBehaviour {
 	public GameObject Container;
 	
 	//tempo para criar as ovelhas
-	public float TimeToSpawn = 1.5f;
+	public float TimeToSpawn;
+	private float TimeToSpawnMin = 0.55f;
+	private float TimeToSpawnMax = 1.2f;
 	#endregion
 
 	#region PRIVATE VARS
@@ -38,12 +40,15 @@ public class SpawnChars : MonoBehaviour {
 
 			if (TimeAmount >= TimeToSpawn)
 			{
+				Debug.Log(TimeToSpawn);
 				OnSpawnChars();
 				TimeAmount = 0;
+				TimeToSpawn = TimeToSpawnGenerator();
 			}
 		}
 	}
 
+	#region PUBLIC_METHODS
 	/// <summary>
 	/// Inicializa a spawn sheeps
 	/// </summary>
@@ -54,9 +59,12 @@ public class SpawnChars : MonoBehaviour {
 		ArrPlayers = new List<GameObject>();
 		//seta o inicio do jogo
 		flagInitGame = true;
+
+		TimeToSpawn = TimeToSpawnGenerator();
 		//faz o respawn funcionar
 		//InvokeRepeating("OnSpawnChars", 0, TimeToSpawn);
 	}
+
 	/// <summary>
 	/// Limpa o personagens
 	/// </summary>
@@ -75,7 +83,17 @@ public class SpawnChars : MonoBehaviour {
 	{
 		ArrPlayers.RemoveAt(0);
 	}
+	#endregion
 
+	#region PRIVATE_METHODS
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	private float TimeToSpawnGenerator()
+	{
+		return Random.Range(TimeToSpawnMin, TimeToSpawnMax);
+	}
 	/// <summary>
 	/// Gera os personagens
 	/// </summary>
@@ -104,5 +122,6 @@ public class SpawnChars : MonoBehaviour {
 			}
 		}
 	}
-	
+	#endregion
+
 }

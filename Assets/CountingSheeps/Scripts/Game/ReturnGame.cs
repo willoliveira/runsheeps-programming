@@ -8,11 +8,6 @@ public class ReturnGame : MonoBehaviour {
 
 	public Text countText;
 	public int count = 3;
-
-	// Use this for initialization
-	void Start () {
-
-	}
 	
 	public IEnumerator CountReturn()
 	{

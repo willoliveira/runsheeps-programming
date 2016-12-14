@@ -14,10 +14,10 @@ public class TitleScreen : MonoBehaviour {
 	public void ScreenExit()
 	{
 		gameObject.SetActive(false);
-		//Abre a proxima tela
 	}
 
 	public void OnInitGame() {
+		//Inicia a animação da camera
 		mCamera.GetComponent<Animator>().SetTrigger("StartGame");
 	}
 }

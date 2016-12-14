@@ -48,6 +48,10 @@ public class GameManager : MonoBehaviour {
 	private static Screens currentScreen;
 	#endregion
 
-
+	void Awake()
+	{
+		Application.targetFrameRate = 30;
+	}
+		
 
 }
