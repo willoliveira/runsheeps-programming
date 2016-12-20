@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 				mRigidbody2D.AddForce(new Vector2(0f, JumpForce));
 				Jump = false;
 			}
-		} 
+		}
 		else
 		{
 			mRigidbody2D.isKinematic = true;

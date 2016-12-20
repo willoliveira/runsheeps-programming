@@ -235,7 +235,9 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 			nextPage = 0;
 		}
 		LerpToPage(nextPage);
-    }
+		//dispara que foi para a proxima pagina
+		EventManager.TriggerEvent(triggerNextPage);
+	}
 
     //------------------------------------------------------------------------
     private void PreviousScreen() {
@@ -246,7 +248,9 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 			prevPage = _pageCount - 1;
 		}
 		LerpToPage(prevPage);
-    }
+		//dispara que foi para a pagina anterior
+		EventManager.TriggerEvent(triggerPrevPage);
+	}
 
     //------------------------------------------------------------------------
     private int GetNearestPage() {
@@ -291,12 +295,8 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             Mathf.Abs(difference) < _fastSwipeThresholdMaxLimit) {
             if (difference > 0) {
 				NextScreen();
-				//dispara que foi para a proxima pagina
-				EventManager.TriggerEvent(triggerNextPage);
 			} else {
 				PreviousScreen();
-				//dispara que foi para a pagina anterior
-				EventManager.TriggerEvent(triggerPrevPage);
 			}
         } else {
             // if not fast time, look to which page we got to
