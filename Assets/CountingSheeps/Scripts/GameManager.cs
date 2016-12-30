@@ -40,18 +40,64 @@ public class GameManager : MonoBehaviour {
 		get { return currentScreen; }
 		set { currentScreen = value; }
 	}
+
+	public static Config Config
+	{
+		get { return config; }
+	}
+
+	public static GameData GameData
+	{
+		get { return gameData; }
+		set { gameData = value; }
+	}
+
+	public Config ConfigFile;
 	#endregion
 
 	#region PRIVATE VARS
 	private static bool pauseGame;
 	private static GameManager gameManager;
 	private static Screens currentScreen;
+	private static Config config;
+	private static GameData gameData;
 	#endregion
 
 	void Awake()
 	{
 		Application.targetFrameRate = 30;
-	}
+
+		config = ConfigFile;
 		
+		LoadData();
+		//Debug.Log(data.coins);
+		//Debug.Log(data.characterSelect);
+		//Debug.Log(data.listCharacters.Count);
+	}
+
+	private void LoadData()
+	{
+		gameData = new GameData();
+		GameData data = DataPersist.Load<GameData>() as GameData;
+		if (data == null)
+		{			
+			gameData.characterSelect = Config.DefaultCharacter.name;
+			gameData.coins = Config.coins;
+			//gameData.listCharacters = Config.ListCharacters;
+
+			Debug.Log(gameData.coins);
+			Debug.Log(gameData.characterSelect);
+
+			DataPersist.Save<GameData>(gameData);
+		}
+		else
+		{
+			Debug.Log(data.coins);
+			Debug.Log(data.characterSelect);
+			//Debug.Log(data.listCharacters.Count);
+
+			gameData = data;
+		}
+	}
 
 }

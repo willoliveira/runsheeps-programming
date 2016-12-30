@@ -26,12 +26,19 @@ public class Player : MonoBehaviour
 	private Rigidbody2D mRigidbody2D;
 	//se o personagem passou pela zona de pontuação
 	private bool CanDiscardChar = false;
+
+	private CharacterDefinition CharacterProps;
 	#endregion
 
 	// Use this for initialization
 	void Awake()
 	{
 		mRigidbody2D = GetComponent<Rigidbody2D>();
+	}
+
+	void Start()
+	{
+		InstantiatePlayer();
 	}
 
 	void FixedUpdate()
@@ -79,6 +86,22 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	#region PRIVATE METHODS
+	/// <summary>
+	/// Inicializa um player com o valor no config
+	/// </summary>
+	private void InstantiatePlayer()
+	{
+		SpriteRenderer sRenderer = GetComponent<SpriteRenderer>();
+		Texture2D characterSelect = GameManager.Config.CharacterSelect.image;
+
+		sRenderer.sprite = Sprite.Create(
+			characterSelect,
+			new Rect(new Vector2(0, 0), new Vector2(characterSelect.width, characterSelect.height)),
+			new Vector2(0.5f, 0.5f)
+		);
+	}
+
 	#region COLLIDERS
 	/// <summary>
 	/// Colider do player
@@ -110,6 +133,7 @@ public class Player : MonoBehaviour
 			CanDiscardChar = true;
 		}
 	}
+	#endregion
 
 	#endregion
 }

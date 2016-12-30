@@ -6,5 +6,16 @@ using System.Collections.Generic;
 public class Config : ScriptableObject
 {
 	public CharacterDefinition CharacterSelect;
-	public List<CharacterDefinition> ListCharacters;
+	public CharacterDefinition DefaultCharacter;
+	public List<CharacterDefinition> ListCharacters = new List<CharacterDefinition>();
+
+	public int coins;
+
+	public void OnEnable()
+	{
+		if (this.CharacterSelect == null)
+		{
+			this.CharacterSelect = this.DefaultCharacter;
+		}
+	}
 }
