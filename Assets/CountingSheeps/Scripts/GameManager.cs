@@ -1,103 +1,127 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum Screens
 {
-	Title,
-	Game,
-	Store,
-	DailyChallenge
+    Title,
+    Game,
+    Store,
+    DailyChallenge
 }
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
-	#region PUBLIC VARS
-	public static GameManager Instance
-	{
-		get
-		{
-			if (!gameManager)
-			{
-				gameManager = FindObjectOfType(typeof(GameManager)) as GameManager;
+    #region PUBLIC VARS
+    public static GameManager Instance
+    {
+        get
+        {
+            if (!gameManager)
+            {
+                gameManager = FindObjectOfType(typeof(GameManager)) as GameManager;
 
-				if (!gameManager)
-				{
-					Debug.LogError("There needs to be one active GameManger script on a GameObject in your scene.");
-				}
-			}
-			return gameManager;
-		}
-	}
+                if (!gameManager)
+                {
+                    Debug.LogError("There needs to be one active GameManger script on a GameObject in your scene.");
+                }
+            }
+            return gameManager;
+        }
+    }
 
-	public static bool Pause
-	{
-		get { return pauseGame; }
-		set { pauseGame = value; }
-	}
+    public static bool Pause
+    {
+        get { return pauseGame; }
+        set { pauseGame = value; }
+    }
 
-	public static Screens CurrentScreen
-	{
-		get { return currentScreen; }
-		set { currentScreen = value; }
-	}
+    public static Screens CurrentScreen
+    {
+        get { return currentScreen; }
+        set { currentScreen = value; }
+    }
 
-	public static Config Config
-	{
-		get { return config; }
-	}
+    //GameSettings
+    public int coins;
+    public static int Coins
+    {
+        get { return Instance.coins; }
+        set { Instance.coins = value; }
+    }
 
-	public static GameData GameData
-	{
-		get { return gameData; }
-		set { gameData = value; }
-	}
+    public CharacterDefinition defaultCharacter;
+    public static CharacterDefinition DefaultCharacter
+    {
+        get { return Instance.defaultCharacter; }
+    }
 
-	public Config ConfigFile;
-	#endregion
+    public CharacterDefinition characterSelect;
+    public static CharacterDefinition CharacterSelect
+    {
+        get { return Instance.characterSelect; }
+        set { Instance.characterSelect = value; }
+    }
 
-	#region PRIVATE VARS
-	private static bool pauseGame;
-	private static GameManager gameManager;
-	private static Screens currentScreen;
-	private static Config config;
-	private static GameData gameData;
-	#endregion
+    public List<CharacterDefinition> listCharacters = new List<CharacterDefinition>();
+    public static List<CharacterDefinition> ListCharacters
+    {
+        get { return Instance.listCharacters; }
+    }
+    //GameSettings
+    #endregion
 
-	void Awake()
-	{
-		Application.targetFrameRate = 30;
+    #region PRIVATE VARS
+    private static CharactersData cData;
 
-		config = ConfigFile;
-		
-		LoadData();
-		//Debug.Log(data.coins);
-		//Debug.Log(data.characterSelect);
-		//Debug.Log(data.listCharacters.Count);
-	}
+    private static bool pauseGame;
+    private static GameManager gameManager;
+    private static Screens currentScreen;
+    #endregion
 
-	private void LoadData()
-	{
-		gameData = new GameData();
-		GameData data = DataPersist.Load<GameData>() as GameData;
-		if (data == null)
-		{			
-			gameData.characterSelect = Config.DefaultCharacter.name;
-			gameData.coins = Config.coins;
-			//gameData.listCharacters = Config.ListCharacters;
+    void Awake()
+    {
+        Application.targetFrameRate = 30;
+        LoadData();
+    }
 
-			Debug.Log(gameData.coins);
-			Debug.Log(gameData.characterSelect);
+    private void LoadData()
+    {
+        //Game Data
+        GameData gameData = new GameData();
+        gameData = DataPersist.Load<GameData>("Gamedata.dat") as GameData;
+        //se não existir nada salvo ainda
+        if (gameData == null)
+        {
+            gameData = new GameData();
+            gameData.coins = Coins;
+            DataPersist.Save<GameData>("Gamedata.dat", gameData);
+        }
+        else
+        {
+            Coins = gameData.coins;
+        }
 
-			DataPersist.Save<GameData>(gameData);
-		}
-		else
-		{
-			Debug.Log(data.coins);
-			Debug.Log(data.characterSelect);
-			//Debug.Log(data.listCharacters.Count);
+        //Characters
+        CharactersData charactersData = new CharactersData();
+        charactersData = DataPersist.Load<CharactersData>("CharactersData.dat") as CharactersData;
+        //se não existir nada salvo ainda
+        if (charactersData == null)
+        {
+            charactersData = new CharactersData();
 
-			gameData = data;
-		}
-	}
+            charactersData.CharacterSelect = CharacterSelect;
+            charactersData.DefaultCharacter = DefaultCharacter;
+            charactersData.ListCharacters = ListCharacters;
+            DataPersist.Save<CharactersData>("CharactersData.dat", charactersData);
+        }
+        else
+        {
+            //ListCharacters.
+            Debug.Log(charactersData);
+        }
+    }
 
 }

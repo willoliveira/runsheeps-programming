@@ -20,7 +20,7 @@ public class StoreScreen : MonoBehaviour {
 	void Start ()
 	{
 		//coloca o saldo de moedas na tela da Store
-		txtSaldoCoins.text = GameManager.Config.coins.ToString();
+		txtSaldoCoins.text = GameManager.Coins.ToString();
 		//Cria os scroll com base nos personagens do config
 		CreateScrollSnap();
 
@@ -36,23 +36,23 @@ public class StoreScreen : MonoBehaviour {
 	public void SelectCharacter()
 	{
 		//se o personagem já estiver disponivel
-		if (GameManager.Config.ListCharacters.ElementAt(currentChar).isAvaliable)
+		if (GameManager.ListCharacters.ElementAt(currentChar).isAvaliable)
 		{
-			GameManager.Config.CharacterSelect = GameManager.Config.ListCharacters.ElementAt(currentChar);
+			GameManager.CharacterSelect = GameManager.ListCharacters.ElementAt(currentChar);
 			//TODO: Localizar depois
 			btSelecionarComprar.GetComponentInChildren<Text>().text = "Selecionado";
 		}
 		//Se não, tenta comprar
-		else if (GameManager.Config.coins >= GameManager.Config.ListCharacters.ElementAt(currentChar).price)
+		else if (GameManager.Coins >= GameManager.ListCharacters.ElementAt(currentChar).price)
 		{
 			//Seleciona o personagem
-			GameManager.Config.CharacterSelect = GameManager.Config.ListCharacters.ElementAt(currentChar);
+			GameManager.CharacterSelect = GameManager.ListCharacters.ElementAt(currentChar);
 			//Depois da venda, coloca ele como disponivel para uso
-			GameManager.Config.CharacterSelect.isAvaliable = true;
+			GameManager.CharacterSelect.isAvaliable = true;
 			//Subtrai as moedas
-			GameManager.Config.coins -= GameManager.Config.ListCharacters.ElementAt(currentChar).price;
+			GameManager.Coins -= GameManager.ListCharacters.ElementAt(currentChar).price;
 			//Atualiza o sando na tela
-			txtSaldoCoins.text = GameManager.Config.coins.ToString();
+			txtSaldoCoins.text = GameManager.Coins.ToString();
 			//TODO: Localizar depois
 			btSelecionarComprar.GetComponentInChildren<Text>().text = "Selecionado";
 		}
@@ -93,7 +93,7 @@ public class StoreScreen : MonoBehaviour {
 	{
 		currentChar -= 1;
 		if (currentChar < 0)
-			currentChar = GameManager.Config.ListCharacters.Count - 1;
+			currentChar = GameManager.ListCharacters.Count - 1;
 
 		ConfigureSelectCharacter();
 	}
@@ -101,7 +101,7 @@ public class StoreScreen : MonoBehaviour {
 	private void nextCharacter()
 	{
 		currentChar += 1;
-		if (currentChar >= GameManager.Config.ListCharacters.Count)
+		if (currentChar >= GameManager.ListCharacters.Count)
 			currentChar = 0;
 
 		ConfigureSelectCharacter();
@@ -112,17 +112,17 @@ public class StoreScreen : MonoBehaviour {
 	{
 		Text btText = btSelecionarComprar.GetComponentInChildren<Text>();
 		//GameManager.Config.ListCharacters[];
-		if (GameManager.Config.CharacterSelect == GameManager.Config.ListCharacters.ElementAt(currentChar))
+		if (GameManager.CharacterSelect == GameManager.ListCharacters.ElementAt(currentChar))
 		{
 			btText.text = "Selecionado";
 		}
-		else if (GameManager.Config.ListCharacters.ElementAt(currentChar).isAvaliable)
+		else if (GameManager.ListCharacters.ElementAt(currentChar).isAvaliable)
 		{
 			btText.text = "Selecionar";
 		} 
 		else
 		{
-			btText.text = "" + GameManager.Config.ListCharacters.ElementAt(currentChar).price;
+			btText.text = "" + GameManager.ListCharacters.ElementAt(currentChar).price;
 		}
 	}
 
@@ -132,18 +132,18 @@ public class StoreScreen : MonoBehaviour {
 		//Debug.Log(config.ListCharacters.Count);
 		//TODO: Tentar fazer esse sort de novo depois
 		//listChars.Sort((a, b) => a.order);
-		for (int cont = 0; cont < GameManager.Config.ListCharacters.Count; cont++)
+		for (int cont = 0; cont < GameManager.ListCharacters.Count; cont++)
 		{
 			//cria uma instancia do slide
 			GameObject instance = Instantiate(slideChar) as GameObject;
 			//Atribui no container
 			instance.transform.SetParent(containerSlides.transform);
 			//seta o texto no container
-			instance.transform.Find("NameChar").GetComponent<Text>().text = GameManager.Config.ListCharacters[cont].nameCharacter;
+			instance.transform.Find("NameChar").GetComponent<Text>().text = GameManager.ListCharacters[cont].nameCharacter;
 			//seta a imagem no container
-			var imgChar = GameManager.Config.ListCharacters[cont].image;
+			var imgChar = GameManager.ListCharacters[cont].image;
 			instance.transform.Find("ImgChar").GetComponent<Image>().sprite = Sprite.Create(
-				GameManager.Config.ListCharacters[cont].image, 
+				GameManager.ListCharacters[cont].image, 
 				new Rect(new Vector2(0f, 0f), 
 				new Vector2(imgChar.width, imgChar.height)), new Vector2(0, 0)
 			);

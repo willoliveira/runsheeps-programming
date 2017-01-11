@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
 	private void InstantiatePlayer()
 	{
 		SpriteRenderer sRenderer = GetComponent<SpriteRenderer>();
-		Texture2D characterSelect = GameManager.Config.CharacterSelect.image;
+		Texture2D characterSelect = GameManager.CharacterSelect.image;
 
 		sRenderer.sprite = Sprite.Create(
 			characterSelect,
