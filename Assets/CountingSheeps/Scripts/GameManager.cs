@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Application.targetFrameRate = 30;
-        LoadData();
+        //LoadData();
     }
 
     /// <summary>
