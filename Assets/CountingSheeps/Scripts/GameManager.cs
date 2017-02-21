@@ -87,6 +87,9 @@ public class GameManager : MonoBehaviour
         LoadData();
     }
 
+    /// <summary>
+    /// Testes com carregamento e salvamento
+    /// </summary>
     private void LoadData()
     {
         //Game Data
@@ -112,9 +115,9 @@ public class GameManager : MonoBehaviour
         {
             charactersData = new CharactersData();
 
-            charactersData.CharacterSelect = CharacterSelect;
-            charactersData.DefaultCharacter = DefaultCharacter;
-            charactersData.ListCharacters = ListCharacters;
+            //charactersData.CharacterSelect = CharacterSelect;
+            //charactersData.DefaultCharacter = DefaultCharacter;
+            //charactersData.ListCharacters = ListCharacters;
             DataPersist.Save<CharactersData>("CharactersData.dat", charactersData);
         }
         else

@@ -7,18 +7,18 @@ using System.IO;
 public class DataPersist : MonoBehaviour
 {
 
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(0, 0, 100, 30), "Save"))
-        {
-            //Save<GameData>();
-        }
-        if (GUI.Button(new Rect(0, 40, 100, 30), "Load"))
-        {
-            Debug.Log("Load: " + Application.persistentDataPath);
-            //Load();
-        }
-    }
+    //void OnGUI()
+    //{
+    //    if (GUI.Button(new Rect(0, 0, 100, 30), "Save"))
+    //    {
+    //        //Save<GameData>();
+    //    }
+    //    if (GUI.Button(new Rect(0, 40, 100, 30), "Load"))
+    //    {
+    //        Debug.Log("Load: " + Application.persistentDataPath);
+    //        //Load();
+    //    }
+    //}
 
 
     public static void Save<T>(string source, DataObject data)
@@ -48,7 +48,7 @@ public class DataPersist : MonoBehaviour
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/" + source, FileMode.Open);
-
+            
             T data = (T)bf.Deserialize(file) as T;
             file.Close();
 

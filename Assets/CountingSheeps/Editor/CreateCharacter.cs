@@ -4,10 +4,10 @@ using UnityEditor;
 
 public class CreateCharacter {
 
-	[MenuItem("Assets/Create/Character")]
+	[MenuItem("Assets/Character Definition")]
 	public static void Create()
 	{
-		CharacterDefinition asset = ScriptableObject.CreateInstance<CharacterDefinition>();
+        CharacterDefinition asset = ScriptableObject.CreateInstance<CharacterDefinition>();
 
 		AssetDatabase.CreateAsset(asset, "Assets/CountingSheeps/Data/Characters/NewCharacter.char");
 		AssetDatabase.SaveAssets();
