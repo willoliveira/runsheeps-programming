@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 	//check do solo
 	public Transform GroundCheck;
 	//referencia de Game
-	public GameScreen mGame;
+	public GameScreen gameScreen;
 	#endregion
 
 	#region PRIVATE VARS
@@ -44,18 +44,19 @@ public class Player : MonoBehaviour
 	{
 		if (!GameManager.Pause)
 		{
-			//ficou meio gambs, depois tento fazer diferente
-			mRigidbody2D.isKinematic = false;
-			mRigidbody2D.velocity = new Vector2(MaxSpeed, mRigidbody2D.velocity.y);
+            //ficou meio gambs, depois tento fazer diferente
+            //mRigidbody2D.isKinematic = false;
+            mRigidbody2D.velocity = new Vector2(MaxSpeed, mRigidbody2D.velocity.y);
 			if (Jump)
 			{
+                Debug.Log("JUMP");
 				mRigidbody2D.AddForce(new Vector2(0f, JumpForce));
 				Jump = false;
 			}
 		}
 		else
 		{
-			mRigidbody2D.isKinematic = true;
+			//mRigidbody2D.isKinematic = true;
 			mRigidbody2D.velocity = new Vector2(0, 0);
 		}
 	}
@@ -110,7 +111,7 @@ public class Player : MonoBehaviour
 	{
 		if (coll.gameObject.tag == "Wall")
 		{
-			mGame.OnGameOver();
+			gameScreen.OnGameOver();
 		}
 	}
 	/// <summary>
@@ -122,12 +123,12 @@ public class Player : MonoBehaviour
 		if (coll.gameObject.tag == "ScorePoint")
 		{
 			//avisa o game que o personagem já, colidiu com a zona de score
-			mGame.OnScoreGoal();
+			gameScreen.OnScoreGoal();
 		}
 		else if (coll.gameObject.tag == "DiscardSheep")
 		{
 			//Seta o ponto
-			mGame.OnScorePoint();
+			gameScreen.OnScorePoint();
 			//pode descartar o char
 			CanDiscardChar = true;
 		}

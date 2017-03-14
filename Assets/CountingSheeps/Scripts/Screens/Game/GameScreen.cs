@@ -25,6 +25,8 @@ public class GameScreen : MonoBehaviour
 	private bool afterPause;
 	//quando reseta a jogada
 	private bool firstPlay = true;
+
+    private GameMain gameMain;
 	#endregion
 
 
@@ -32,6 +34,8 @@ public class GameScreen : MonoBehaviour
 	{
 		//quando reseta a jogada
 		firstPlay = true;
+
+        gameMain = GetComponent<GameMain>();
 	}
 
 	void Update()
@@ -46,7 +50,6 @@ public class GameScreen : MonoBehaviour
 		{
 			firstPlay = false;
 		}
-
 		afterPause = GameManager.Pause;
 	}
 
@@ -60,12 +63,13 @@ public class GameScreen : MonoBehaviour
 		firstPlay = true;
 		beforePause = false;
 		afterPause = false;
+
 		GameManager.Pause = false;
 
 		//seta e tela atual
 		GameManager.CurrentScreen = Screens.Game;
-		//inicia o game
-		Init();
+        //inicia o game
+        gameMain.InitGame();
 	}
 	/// <summary>
 	/// Chamado com a janela é fechada
@@ -168,13 +172,6 @@ public class GameScreen : MonoBehaviour
 		//despausa o jogo
 		GameManager.Pause = false;
 		firstPlay = true;
-	}
-	/// <summary>
-	/// 
-	/// </summary>
-	private void Init()
-	{
-
 	}
 	#endregion
 }
