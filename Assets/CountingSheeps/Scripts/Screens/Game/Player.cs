@@ -42,10 +42,14 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (!GameManager.Pause)
-		{
-            //ficou meio gambs, depois tento fazer diferente
-            //mRigidbody2D.isKinematic = false;
+		if (GameManager.Pause)
+        {
+            mRigidbody2D.isKinematic = true;
+            mRigidbody2D.velocity = new Vector2(0, 0);
+        }
+        else
+        {
+            mRigidbody2D.isKinematic = false;
             mRigidbody2D.velocity = new Vector2(MaxSpeed, mRigidbody2D.velocity.y);
 			if (Jump)
 			{
@@ -53,11 +57,6 @@ public class Player : MonoBehaviour
 				mRigidbody2D.AddForce(new Vector2(0f, JumpForce));
 				Jump = false;
 			}
-		}
-		else
-		{
-			//mRigidbody2D.isKinematic = true;
-			mRigidbody2D.velocity = new Vector2(0, 0);
 		}
 	}
 	
