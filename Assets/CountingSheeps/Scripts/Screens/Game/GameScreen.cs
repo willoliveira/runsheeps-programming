@@ -4,8 +4,7 @@ using System.Collections;
 
 
 // TODO: FAZER UM METODO GENERICO PARA POP UP
-// TODO: Pensar em um modo de fazer aquele lance de uma contagem pro jogo voltar a rodar, entao, deveria passar pelo menos lugar o pause do jogo, sei la
-public class Game : MonoBehaviour
+public class GameScreen : MonoBehaviour
 {
 
 	#region PUBLIC VARS
@@ -15,14 +14,11 @@ public class Game : MonoBehaviour
 	public GameObject mCamera;
 
 	public Text ScoreText;
-	public GameObject spawnChars;
-
 	//quando der game over
 	public bool gameOverGame;
 	#endregion
 
 	#region PRIVATE VARS
-	private SpawnChars mSpawnChars;
 	private int Score = 0;
 	//controle de pause
 	private bool beforePause;
@@ -34,8 +30,6 @@ public class Game : MonoBehaviour
 
 	void Start()
 	{
-		//pega a referencia da classe que faz o spawn das ovelhas
-		mSpawnChars = spawnChars.GetComponent<SpawnChars>();
 		//quando reseta a jogada
 		firstPlay = true;
 	}
@@ -46,8 +40,6 @@ public class Game : MonoBehaviour
 
 		if (!firstPlay && afterPause && beforePause != afterPause)
 		{
-			Debug.Log("Saiu do pause");
-
 			StartCoroutine(returnGame());
 		}
 		else
@@ -72,7 +64,6 @@ public class Game : MonoBehaviour
 
 		//seta e tela atual
 		GameManager.CurrentScreen = Screens.Game;
-		//GameManager.Pause = false;
 		//inicia o game
 		Init();
 	}
@@ -89,8 +80,6 @@ public class Game : MonoBehaviour
 	/// </summary>
 	public void RestartGame()
 	{
-		//limpa os personagens da tela
-		mSpawnChars.Clear();
 		//fecha a tela do game over
 		GameOverScreen.SetActive(false);
 		//zera o score
@@ -137,9 +126,7 @@ public class Game : MonoBehaviour
 		//desabilita a tela
 		QuitGame.SetActive(false);
 		//
-		mSpawnChars.Clear();
-		//
-		mCamera.GetComponent<Animator>().SetTrigger("ReturnTitle");
+		//mCamera.GetComponent<Animator>().SetTrigger("ReturnTitle");
 	}
 	/// <summary>
 	/// 
@@ -156,7 +143,7 @@ public class Game : MonoBehaviour
 	/// </summary>
 	public void OnScoreGoal()
 	{
-		mSpawnChars.Scored();
+
 	}
 	/// <summary>
 	/// 
@@ -172,7 +159,6 @@ public class Game : MonoBehaviour
 	private IEnumerator returnGame()
 	{
 		GameManager.Pause = true;
-
 		//habilita a tela
 		ReturnGame.SetActive(true);
 		//chama a rotina que conta o tempo antes de voltar
@@ -188,8 +174,7 @@ public class Game : MonoBehaviour
 	/// </summary>
 	private void Init()
 	{
-		Debug.Log(mSpawnChars);
-		mSpawnChars.InitGame(this);
+
 	}
 	#endregion
 }

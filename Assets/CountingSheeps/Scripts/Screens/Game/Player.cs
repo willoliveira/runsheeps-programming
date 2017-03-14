@@ -13,8 +13,7 @@ public class Player : MonoBehaviour
 	//check do solo
 	public Transform GroundCheck;
 	//referencia de Game
-	[HideInInspector]
-	public Game mGame;
+	public GameScreen mGame;
 	#endregion
 
 	#region PRIVATE VARS
