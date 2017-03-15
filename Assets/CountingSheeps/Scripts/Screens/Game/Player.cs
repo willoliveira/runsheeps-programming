@@ -37,8 +37,11 @@ public class Player : MonoBehaviour
 
 	void Start()
 	{
-		InstantiatePlayer();
-	}
+        //refatorar esse cara depois
+		//InstantiatePlayer();
+
+        //mRigidbody2D.isKinematic = true;
+    }
 
 	void FixedUpdate()
 	{
@@ -64,14 +67,6 @@ public class Player : MonoBehaviour
 	{
 		//verifica se o personagem esta tocando o chão
 		Grounded = Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-		//se tocar o chao e estiver passado pelo zona de score, marca um ponto
-		if (Grounded && CanDiscardChar)
-		{
-			//destroi char
-			Destroy(transform.gameObject);
-			//gameObject.GetComponent<Animator>().SetTrigger("Destroy");
-			CanDiscardChar = false;
-		}
 	}
 	/// <summary>
 	/// Acao de pular do personagem
