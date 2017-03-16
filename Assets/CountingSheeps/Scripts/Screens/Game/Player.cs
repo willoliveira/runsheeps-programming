@@ -48,12 +48,10 @@ public class Player : MonoBehaviour
 		if (GameManager.Pause)
         {
             mRigidbody2D.isKinematic = true;
-            mRigidbody2D.velocity = new Vector2(0, 0);
         }
         else
         {
             mRigidbody2D.isKinematic = false;
-            mRigidbody2D.velocity = new Vector2(MaxSpeed, mRigidbody2D.velocity.y);
 			if (Jump)
 			{
                 Debug.Log("JUMP");
