@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 	public void JumpAction()
 	{
 		//se estiver tocando o chao, pula!
-		if (Grounded)
+		if (GameManager.CurrentScreen == Screens.Game && Grounded)
 		{
 			Jump = true;
 		}
