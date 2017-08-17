@@ -13,8 +13,7 @@ public class Player : MonoBehaviour
 	//check do solo
 	public Transform GroundCheck;
 	//referencia de Game
-	[HideInInspector]
-	public Game mGame;
+	public GameScreen gameScreen;
 	#endregion
 
 	#region PRIVATE VARS
@@ -38,26 +37,31 @@ public class Player : MonoBehaviour
 
 	void Start()
 	{
-		InstantiatePlayer();
-	}
+        //refatorar esse cara depois
+		//InstantiatePlayer();
+
+        //mRigidbody2D.isKinematic = true;
+    }
 
 	void FixedUpdate()
 	{
-		if (!GameManager.Pause)
-		{
-			//ficou meio gambs, depois tento fazer diferente
-			mRigidbody2D.isKinematic = false;
-			mRigidbody2D.velocity = new Vector2(MaxSpeed, mRigidbody2D.velocity.y);
+		if (GameManager.Pause)
+        {
+            mRigidbody2D.isKinematic = true;
+            Animator anim = GetComponent<Animator>();
+            anim.speed = 0;
+        }
+        else
+        {
+            Animator anim = GetComponent<Animator>();
+            anim.speed = 1;
+
+            mRigidbody2D.isKinematic = false;
 			if (Jump)
 			{
 				mRigidbody2D.AddForce(new Vector2(0f, JumpForce));
 				Jump = false;
 			}
-		}
-		else
-		{
-			mRigidbody2D.isKinematic = true;
-			mRigidbody2D.velocity = new Vector2(0, 0);
 		}
 	}
 	
@@ -65,14 +69,6 @@ public class Player : MonoBehaviour
 	{
 		//verifica se o personagem esta tocando o chão
 		Grounded = Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-		//se tocar o chao e estiver passado pelo zona de score, marca um ponto
-		if (Grounded && CanDiscardChar)
-		{
-			//destroi char
-			Destroy(transform.gameObject);
-			//gameObject.GetComponent<Animator>().SetTrigger("Destroy");
-			CanDiscardChar = false;
-		}
 	}
 	/// <summary>
 	/// Acao de pular do personagem
@@ -80,7 +76,7 @@ public class Player : MonoBehaviour
 	public void JumpAction()
 	{
 		//se estiver tocando o chao, pula!
-		if (Grounded)
+		if (GameManager.CurrentScreen == Screens.Game && Grounded)
 		{
 			Jump = true;
 		}
@@ -111,7 +107,7 @@ public class Player : MonoBehaviour
 	{
 		if (coll.gameObject.tag == "Wall")
 		{
-			mGame.OnGameOver();
+			gameScreen.OnGameOver();
 		}
 	}
 	/// <summary>
@@ -123,12 +119,12 @@ public class Player : MonoBehaviour
 		if (coll.gameObject.tag == "ScorePoint")
 		{
 			//avisa o game que o personagem já, colidiu com a zona de score
-			mGame.OnScoreGoal();
+			gameScreen.OnScoreGoal();
 		}
 		else if (coll.gameObject.tag == "DiscardSheep")
 		{
 			//Seta o ponto
-			mGame.OnScorePoint();
+			gameScreen.OnScorePoint();
 			//pode descartar o char
 			CanDiscardChar = true;
 		}

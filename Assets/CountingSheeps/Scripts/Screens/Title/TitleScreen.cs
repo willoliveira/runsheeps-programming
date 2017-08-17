@@ -18,6 +18,6 @@ public class TitleScreen : MonoBehaviour {
 
 	public void OnInitGame() {
 		//Inicia a animação da camera
-		mCamera.GetComponent<Animator>().SetTrigger("StartGame");
+		//mCamera.GetComponent<Animator>().SetTrigger("StartGame");
 	}
 }
