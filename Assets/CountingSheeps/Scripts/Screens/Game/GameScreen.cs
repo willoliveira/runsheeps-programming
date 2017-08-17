@@ -76,6 +76,8 @@ public class GameScreen : MonoBehaviour
 	/// </summary>
 	public void ScreenExit()
 	{
+		firstPlay = true;
+		GameManager.Pause = false;
 		//quando a tela termina de sair, desativa ela
 		gameObject.SetActive(false);
 	}
@@ -129,8 +131,6 @@ public class GameScreen : MonoBehaviour
 	{
 		//desabilita a tela
 		QuitGame.SetActive(false);
-		//
-		//mCamera.GetComponent<Animator>().SetTrigger("ReturnTitle");
 	}
 	/// <summary>
 	/// 

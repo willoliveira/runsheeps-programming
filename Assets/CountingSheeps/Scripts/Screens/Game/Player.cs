@@ -48,13 +48,17 @@ public class Player : MonoBehaviour
 		if (GameManager.Pause)
         {
             mRigidbody2D.isKinematic = true;
+            Animator anim = GetComponent<Animator>();
+            anim.speed = 0;
         }
         else
         {
+            Animator anim = GetComponent<Animator>();
+            anim.speed = 1;
+
             mRigidbody2D.isKinematic = false;
 			if (Jump)
 			{
-                Debug.Log("JUMP");
 				mRigidbody2D.AddForce(new Vector2(0f, JumpForce));
 				Jump = false;
 			}
