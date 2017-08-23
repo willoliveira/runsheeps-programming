@@ -10,8 +10,8 @@ PlayerSettings:
   targetDevice: 0
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Reuno
-  productName: CorgiEngine
+  companyName: CountingSheeps
+  productName: DoozySimple
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
@@ -222,8 +222,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: "F:/Dropbox/Documents \xE0 conserver/Android Keystore/reuno.keystore"
-  AndroidKeyaliasName: reuno
+  AndroidKeystoreName: 
+  AndroidKeyaliasName: 
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 0
@@ -237,7 +237,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 3991f33f40938a94d9c709ed0ecc446a, type: 3}
+      m_Icon: {fileID: 2800000, guid: ba8a73b9ef4d49c429c285275e5b8386, type: 3}
       m_Width: 128
       m_Height: 128
   m_BuildTargetBatching: []
@@ -566,7 +566,7 @@ PlayerSettings:
     1: CROSS_PLATFORM_INPUT;dUI_DoozyUI
     2: CROSS_PLATFORM_INPUT
     4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    7: MOBILE_INPUT
+    7: MOBILE_INPUT;dUI_DoozyUI
     15: CROSS_PLATFORM_INPUT;MOBILE_INPUT
     16: CROSS_PLATFORM_INPUT;MOBILE_INPUT
   platformArchitecture:
@@ -702,7 +702,7 @@ PlayerSettings:
   apiCompatibilityLevel: 2
   cloudProjectId: 3452f5ab-ac60-48c3-8f12-d1790eabd927
   projectName: Run, Sheeps, Run!
-  organizationId: ehgames
+  organizationId: countingsheeps
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
