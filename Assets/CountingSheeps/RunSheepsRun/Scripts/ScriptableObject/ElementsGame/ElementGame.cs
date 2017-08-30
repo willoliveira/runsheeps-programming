@@ -1,29 +1,33 @@
-﻿using System;
+﻿using MoreMountains.Tools;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace CountingSheeps.RunSheepsRun
 {
-    public enum ElementType
+    public enum ElementTypeEnum
     {
         Collectable,
         Obstacle
     }
 
-    public enum ScenaryList
+    public enum ScenaryEnum
     {
         Common,
         Farm
     }
 
     [Serializable]
-    public class ElementGame : MonoBehaviour
+    public class ElementGame : ScriptableObject
     {
-        public ElementType ElementType;
+        [Header("Propriedades")]
+        public string ElementID;
+
+        public ElementTypeEnum ElementType;
 
         public GameObject Prefab;
 
-        public ScenaryList ScenaryItem = ScenaryList.Common;
+        public ScenaryEnum ScenaryItem = ScenaryEnum.Common;
     }
 }

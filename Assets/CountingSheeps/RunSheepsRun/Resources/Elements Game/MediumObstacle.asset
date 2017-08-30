@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815aec49d722e8e48ade67409ff49ce3, type: 3}
+  m_Name: MediumObstacle
+  m_EditorClassIdentifier: 
+  ElementID: MediumObstacle
+  ElementType: 1
+  Prefab: {fileID: 1787303588293108, guid: 31e48867181cc0a43928740a052d6e06, type: 2}
+  ScenaryItem: 0
+  TypesObstacle: 0
+  HitPoint: 1
+  OneHitDie: 1
