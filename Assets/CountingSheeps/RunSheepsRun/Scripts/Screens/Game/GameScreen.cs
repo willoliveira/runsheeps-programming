@@ -155,7 +155,7 @@ namespace CountingSheeps.RunSheepsRun
         /// </summary>
         public void OnScorePoint()
         {
-            Score++;
+            //Score++;
             ScoreText.text = string.Format("{0:000}", Score);
         }
         #endregion

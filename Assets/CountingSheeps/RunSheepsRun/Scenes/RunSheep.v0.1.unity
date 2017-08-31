@@ -86,7 +86,8 @@ LightmapSettings:
     m_PVRFilteringAtrousColorSigma: 1
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: 103f1fd432ebabc4884afd7f3f80f2c3,
+    type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
@@ -6063,6 +6064,7 @@ MonoBehaviour:
   IntervalToSpawnElements: 2
   World: {fileID: 2081403269}
   worldSpeed: 0.15
+  score: {fileID: 0}
 --- !u!1 &1936898528
 GameObject:
   m_ObjectHideFlags: 0
