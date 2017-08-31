@@ -15,6 +15,6 @@ MonoBehaviour:
   ElementType: 1
   Prefab: {fileID: 1787303588293108, guid: 31e48867181cc0a43928740a052d6e06, type: 2}
   ScenaryItem: 0
-  TypesObstacle: 0
+  TypesObstacle: 1
   HitPoint: 1
   OneHitDie: 1

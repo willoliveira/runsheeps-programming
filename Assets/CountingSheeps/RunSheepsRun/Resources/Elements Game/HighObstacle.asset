@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ElementID: HighObstacle
   ElementType: 1
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 1939250827433714, guid: 34367e763c8ff80448a022569a796f92, type: 2}
   ScenaryItem: 0
   TypesObstacle: 2
   HitPoint: 1

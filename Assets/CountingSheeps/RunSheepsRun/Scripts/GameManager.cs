@@ -11,76 +11,79 @@ public enum Screens
     DailyChallenge
 }
 
-public class GameManager : MonoBehaviour
+namespace CountingSheeps.RunSheepsRun
 {
-
-    #region PUBLIC VARS
-    public static GameManager Instance
+    public class GameManager : MonoBehaviour
     {
-        get
-        {
-            if (!gameManager)
-            {
-                gameManager = FindObjectOfType(typeof(GameManager)) as GameManager;
 
+        #region PUBLIC VARS
+        public static GameManager Instance
+        {
+            get
+            {
                 if (!gameManager)
                 {
-                    Debug.LogError("There needs to be one active GameManger script on a GameObject in your scene.");
+                    gameManager = FindObjectOfType(typeof(GameManager)) as GameManager;
+
+                    if (!gameManager)
+                    {
+                        Debug.LogError("There needs to be one active GameManger script on a GameObject in your scene.");
+                    }
                 }
+                return gameManager;
             }
-            return gameManager;
         }
-    }
 
-    public static bool Pause
-    {
-        get { return pauseGame; }
-        set { pauseGame = value; }
-    }
+        public static bool Pause
+        {
+            get { return pauseGame; }
+            set { pauseGame = value; }
+        }
 
-    public static Screens CurrentScreen
-    {
-        get { return currentScreen; }
-        set { currentScreen = value; }
-    }
+        public static Screens CurrentScreen
+        {
+            get { return currentScreen; }
+            set { currentScreen = value; }
+        }
 
-    //GameSettings
-    public int coins;
-    public static int Coins
-    {
-        get { return Instance.coins; }
-        set { Instance.coins = value; }
-    }
+        //GameSettings
+        public int coins;
+        public static int Coins
+        {
+            get { return Instance.coins; }
+            set { Instance.coins = value; }
+        }
 
-    public CharacterDefinition defaultCharacter;
-    public static CharacterDefinition DefaultCharacter
-    {
-        get { return Instance.defaultCharacter; }
-    }
+        public CharacterDefinition defaultCharacter;
+        public static CharacterDefinition DefaultCharacter
+        {
+            get { return Instance.defaultCharacter; }
+        }
 
-    public CharacterDefinition characterSelect;
-    public static CharacterDefinition CharacterSelect
-    {
-        get { return Instance.characterSelect; }
-        set { Instance.characterSelect = value; }
-    }
+        public CharacterDefinition characterSelect;
+        public static CharacterDefinition CharacterSelect
+        {
+            get { return Instance.characterSelect; }
+            set { Instance.characterSelect = value; }
+        }
 
-    public List<CharacterDefinition> listCharacters = new List<CharacterDefinition>();
-    public static List<CharacterDefinition> ListCharacters
-    {
-        get { return Instance.listCharacters; }
-    }
-    //GameSettings
-    #endregion
+        public List<CharacterDefinition> listCharacters = new List<CharacterDefinition>();
+        public static List<CharacterDefinition> ListCharacters
+        {
+            get { return Instance.listCharacters; }
+        }
+        //GameSettings
+        #endregion
 
-    #region PRIVATE VARS
-    private static bool pauseGame;
-    private static GameManager gameManager;
-    private static Screens currentScreen;
-    #endregion
+        #region PRIVATE VARS
+        private static bool pauseGame;
+        private static GameManager gameManager;
+        private static Screens currentScreen;
+        #endregion
 
-    void Awake()
-    {
-        Application.targetFrameRate = 30;
+        void Awake()
+        {
+            Application.targetFrameRate = 30;
+        }
     }
 }

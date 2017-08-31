@@ -1,26 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RankingScreen : MonoBehaviour {
+namespace CountingSheeps.RunSheepsRun
+{
+    public class RankingScreen : MonoBehaviour
+    {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        // Use this for initialization
+        void Start()
+        {
 
-	}
+        }
 
-	public void ScreenOpen()
-	{
-		//seta e tela atual
-		GameManager.CurrentScreen = Screens.Store;
-	}
+        // Update is called once per frame
+        void Update()
+        {
 
-	public void ScreenExit()
-	{
-		gameObject.SetActive(false);
-	}
+        }
+
+        public void ScreenOpen()
+        {
+            //seta e tela atual
+            GameManager.CurrentScreen = Screens.Store;
+        }
+
+        public void ScreenExit()
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }

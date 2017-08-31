@@ -7,6 +7,10 @@ TagManager:
   - LevelBounds
   - Music
   - Background
+  - Ground
+  - ScorePoint
+  - DiscardSheep
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -33,8 +37,8 @@ TagManager:
   - Background
   - Friendlies
   - Invulnerable
-  - 
-  - 
+  - MiddleGround
+  - Ground
   - 
   - 
   - 
@@ -64,4 +68,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 3241408355
+    locked: 0
+  - name: MiddleGround
+    uniqueID: 1747525365
     locked: 0

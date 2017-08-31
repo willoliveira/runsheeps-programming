@@ -5,66 +5,69 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
-public class QuitGame : MonoBehaviour
+namespace CountingSheeps.RunSheepsRun
 {
+    public class QuitGame : MonoBehaviour
+    {
 
-	#region PUBLIC VARS
-	public GameObject QuitScreen;
-	#endregion
+        #region PUBLIC VARS
+        public GameObject QuitScreen;
+        #endregion
 
-	#region PRIVATE VARS
-	private bool QuitOpen;
-	#endregion
-	
-	// Update is called once per frame
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			if (!QuitScreen.activeSelf)
-			{
-				GameManager.Pause = true;
+        #region PRIVATE VARS
+        private bool QuitOpen;
+        #endregion
 
-				QuitScreen.SetActive(true);
-			}
-			else
-			{
-				Quit();
-			}
-		}
-	}
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!QuitScreen.activeSelf)
+                {
+                    GameManager.Pause = true;
 
-	#region PUBLIC METHODS
-	/// <summary>
-	/// 
-	/// </summary>
-	public void OnButtonOk()
-	{
-		Quit();
-	}
-	/// <summary>
-	/// 
-	/// </summary>
-	public void OnButtonCancel()
-	{
-		GameManager.Pause = false;
+                    QuitScreen.SetActive(true);
+                }
+                else
+                {
+                    Quit();
+                }
+            }
+        }
 
-		QuitScreen.SetActive(false);
-	}
-	#endregion
+        #region PUBLIC METHODS
+        /// <summary>
+        /// 
+        /// </summary>
+        public void OnButtonOk()
+        {
+            Quit();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public void OnButtonCancel()
+        {
+            GameManager.Pause = false;
 
-	#region PRIVATE METHODS
-	/// <summary>
-	/// 
-	/// </summary>
-	private void Quit()
-	{
+            QuitScreen.SetActive(false);
+        }
+        #endregion
+
+        #region PRIVATE METHODS
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Quit()
+        {
 #if UNITY_EDITOR
-		EditorApplication.isPlaying = false;
+            EditorApplication.isPlaying = false;
 #else
 		Application.Quit();
 #endif
-	}
-	#endregion
+        }
+        #endregion
 
+    }
 }
