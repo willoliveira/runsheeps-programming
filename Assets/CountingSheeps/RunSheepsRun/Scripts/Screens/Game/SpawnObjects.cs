@@ -7,47 +7,72 @@ namespace CountingSheeps.RunSheepsRun {
 
     public class SpawnObjects : MonoBehaviour {
 
+        [Header("Obstaculos que serão randomizados")]
         public List<Obstacle> ListObstacles;
+        public List<GameObject> ListFloors;
+
+        [Header("Prefabs")]
+        public GameObject FloorContainer;
         public GameObject ObstaclesContainer;
         public GameObject SpawnPosition;
-        public float IntervalToSpawnElements;
         public GameObject World;
+
+        [Header("Minimo e maximo de disntancia para spawn os obstáculos")]
+        public float SeveralMinToSpawn = 8f;
+        public float DistanceToSpawnMin = 12f;
+        public float DistanceToSpawnMax = 20f;
+
+        [Header("World Speed")]
         public float worldSpeed = 0.1f;
+
+        [Header("Score")]
         public Text score;
 
-        private float ActualTime = 0f;
-        private float NextTime;
+        private Random randomObj;
+
+        private float ActualDistance = 0f;
+        private float NextDistance;
+
+        private float TimeGame = 0f;
+        private float DistanceGame;
 
         private void Awake()
         {
-            ActualTime = Time.time;
+            randomObj = new Random();
+            ActualDistance = Time.time;
         }
 
         private void FixedUpdate()
         {   
             if (!GameManager.Pause)
             {
-                World.transform.position = new Vector2(World.transform.position.x - worldSpeed, World.transform.position.y);
+                World.GetComponent<Rigidbody2D>().velocity = new Vector2(-worldSpeed, 0f);
+                //World.GetComponent<Rigidbody2D>().velocity = new Vector2(- worldSpeed, 0f);
+                //World.transform.position = new Vector2(World.transform.position.x - worldSpeed, World.transform.position.y);                
+            }
+            else
+            {
+                World.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
             }
         }
 
         private void Update()
         {
-            //Debug.Log("Time.time: " + ActualTime + " | NextTime: " + NextTime);
             if (!GameManager.Pause)
             {
-                if (ActualTime > NextTime)
-                {
-                    NextTime = Time.time + IntervalToSpawnElements;
+                TimeGame += Time.deltaTime;
+                DistanceGame = (TimeGame * worldSpeed);
 
-                    GameObject instance = Instantiate<GameObject>(ListObstacles[2].Prefab, ObstaclesContainer.transform, true);
+                if (DistanceGame > ActualDistance)
+                {
+                    float RandomDistance = Random.Range(SeveralMinToSpawn, DistanceToSpawnMax);
+                    ActualDistance = DistanceGame + RandomDistance;
+
+                    //Debug.Log("RandomDistance" + RandomDistance);
+
+                    GameObject instance = Instantiate<GameObject>(ListObstacles[Random.Range(1, 2)].Prefab, ObstaclesContainer.transform, true);
                     instance.transform.position = SpawnPosition.transform.position;
                 }
-                ActualTime = Time.time;
-            }
-            else if (Time.time > ActualTime)
-            {
-                NextTime = (NextTime - Time.time + IntervalToSpawnElements);
             }
         }
     }
