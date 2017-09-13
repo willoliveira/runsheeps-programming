@@ -72,6 +72,13 @@ namespace CountingSheeps.RunSheepsRun {
 
                     GameObject instance = Instantiate<GameObject>(ListObstacles[Random.Range(1, 2)].Prefab, ObstaclesContainer.transform, true);
                     instance.transform.position = SpawnPosition.transform.position;
+
+
+                    GameObject instanceFloor = Instantiate<GameObject>(ListFloors[0], FloorContainer.transform, true);
+                    Debug.Log(instanceFloor.GetComponent<BoxCollider2D>().size.y);
+                    instanceFloor.transform.position = SpawnPosition.transform.position;
+                    //instanceFloor.transform.position = new Vector2(SpawnPosition.transform.position.x, SpawnPosition.transform.position.y - instanceFloor.transform.localScale.y);
+
                 }
             }
         }

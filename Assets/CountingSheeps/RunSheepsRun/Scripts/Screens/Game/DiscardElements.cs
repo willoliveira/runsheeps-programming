@@ -9,7 +9,6 @@ namespace CountingSheeps.RunSheepsRun
     {
         void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log(collision.gameObject.tag);
             if (collision.gameObject.tag == "ElementGame")
             {
                 Destroy(collision.gameObject);
