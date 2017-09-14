@@ -9,7 +9,7 @@ namespace CountingSheeps.RunSheepsRun
     {
         void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "ElementGame")
+            if (collision.gameObject.tag == "ElementGame" || collision.gameObject.tag == "Ground")
             {
                 Destroy(collision.gameObject);
             }

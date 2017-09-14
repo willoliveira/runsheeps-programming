@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4176695523844062}
   - component: {fileID: 212025516934595800}
-  - component: {fileID: 61469192205013674}
+  - component: {fileID: 61826091291769510}
   m_Layer: 26
   m_Name: Floor
   m_TagString: Ground
@@ -35,13 +35,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757566464296990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.99, y: -8.257, z: 3.03333}
-  m_LocalScale: {x: 3.6402662, y: 4.1071672, z: 3.6402662}
+  m_LocalPosition: {x: 2.8345, y: -8.257, z: 3.03333}
+  m_LocalScale: {x: 3.64027, y: 4.10717, z: 3.64027}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61469192205013674
+--- !u!61 &61826091291769510
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -50,7 +50,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
