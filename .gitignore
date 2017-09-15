@@ -38,3 +38,8 @@ Thumbs.db
 Releases/
 *.pfx
 *.pfx.meta
+
+# ====== #
+# Ignore #
+# ====== #
+Assets/Editor/WakaTime

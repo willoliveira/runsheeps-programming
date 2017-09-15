@@ -42,7 +42,7 @@ namespace CountingSheeps.RunSheepsRun
             //refatorar esse cara depois
             //InstantiatePlayer();
 
-            //mRigidbody2D.isKinematic = true;
+            mRigidbody2D.isKinematic = true;
         }
 
         void FixedUpdate()
@@ -58,7 +58,7 @@ namespace CountingSheeps.RunSheepsRun
                 Animator anim = GetComponent<Animator>();
                 anim.speed = 1;
 
-                mRigidbody2D.velocity = new Vector2(0.1f, 0f);
+                mRigidbody2D.velocity = new Vector2(MaxSpeed, 0f);
 
                 mRigidbody2D.isKinematic = false;
                 if (Jump)
