@@ -58,7 +58,7 @@ namespace CountingSheeps.RunSheepsRun
                 Animator anim = GetComponent<Animator>();
                 anim.speed = 1;
 
-                mRigidbody2D.velocity = new Vector2(MaxSpeed, 0f);
+                mRigidbody2D.velocity = new Vector2(MaxSpeed, mRigidbody2D.velocity.y);
 
                 mRigidbody2D.isKinematic = false;
                 if (Jump)

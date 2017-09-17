@@ -28,6 +28,8 @@ namespace CountingSheeps.RunSheepsRun {
         [Header("Score")]
         public Text score;
 
+        public GameObject player;
+
         private Random randomObj;
 
         private float ActualDistance = 0f;
@@ -77,17 +79,16 @@ namespace CountingSheeps.RunSheepsRun {
 
         private void FixedUpdate()
         {
-            if (!GameManager.Pause)
-            {
-                Debug.Log(worldSpeed);
-                World.GetComponent<Rigidbody2D>().velocity = new Vector2(-worldSpeed, 0f);
-                //World.GetComponent<Rigidbody2D>().velocity = new Vector2(- worldSpeed, 0f);
-                //World.transform.position = new Vector2(World.transform.position.x - worldSpeed, World.transform.position.y);
-            }
-            else
-            {
-                World.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
-            }
+            //if (!GameManager.Pause)
+            //{
+            //    World.GetComponent<Rigidbody2D>().velocity = new Vector2(-worldSpeed, 0f);
+            //    //World.GetComponent<Rigidbody2D>().velocity = new Vector2(- worldSpeed, 0f);
+            //    //World.transform.position = new Vector2(World.transform.position.x - worldSpeed, World.transform.position.y);
+            //}
+            //else
+            //{
+            //    World.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+            //}
         }
 
         private void Update()
@@ -98,32 +99,36 @@ namespace CountingSheeps.RunSheepsRun {
                 DistanceGame = (TimeGame * worldSpeed);
 
                 //da spawn dos obstaculos
-                //if (DistanceGame > ActualDistance)
-                //{
-                //    float RandomDistance = Random.Range(SeveralMinToSpawn, DistanceToSpawnMax);
-                //    ActualDistance = DistanceGame + RandomDistance;
-                    
-                //    GameObject instance = Instantiate<GameObject>(ListObstacles[Random.Range(0, 2)].Prefab, ObstaclesContainer.transform, true);
-                //    instance.transform.position = SpawnPosition.transform.position;
-                //}
+                if (DistanceGame > ActualDistance)
+                {
+                    float RandomDistance = Random.Range(SeveralMinToSpawn, DistanceToSpawnMax);
+                    ActualDistance = DistanceGame + RandomDistance;
+
+                    GameObject instanceObstacle = Instantiate<GameObject>(ListObstacles[Random.Range(0, 2)].Prefab, ObstaclesContainer.transform, true);
+                    BoxCollider2D instancObstacleBox2D = instanceObstacle.GetComponent<BoxCollider2D>();
+
+                    float ObstacleY = SpawnPosition.transform.position.y;
+                    float ObstacleX = previousFloor.transform.position.x + (instancObstacleBox2D.size.x * instanceObstacle.transform.localScale.x);
+                    instanceObstacle.transform.position =  new Vector2(ObstacleX, ObstacleY);
+                }
+
+                //Debug.Log(previousFloor.transform.position.x + " <  " + CameraHorizontalSize);
+                //Debug.Log(previousFloor.transform.position.x + " <  " + (CameraHorizontalSize + player.transform.position.x));
 
                 //da spawn dos plataformas
-                if (previousFloor && previousFloor.transform.position.x < CameraHorizontalSize)
+                if (previousFloor && previousFloor.transform.position.x < (CameraHorizontalSize + Camera.main.transform.position.x))
                 {
                     GameObject instanceFloor = Instantiate<GameObject>(ListFloors[0], FloorContainer.transform, true);
                     BoxCollider2D instanceFloorBox2D = instanceFloor.GetComponent<BoxCollider2D>();
 
                     float FloorPosY = SpawnPosition.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y);
-                    float FloorPosX = previousFloor.transform.position.x - ((instanceFloorBox2D.size.x / 2) * instanceFloor.transform.localScale.x);
-                    instanceFloor.transform.position = new Vector2(
-                        previousFloor.transform.position.x + (instanceFloorBox2D.size.x * instanceFloor.transform.localScale.x), 
-                        FloorPosY
-                    );
+                    float FloorPosX = previousFloor.transform.position.x + (instanceFloorBox2D.size.x * instanceFloor.transform.localScale.x);
+                    instanceFloor.transform.position = new Vector2(FloorPosX, FloorPosY);
 
                     previousFloor = instanceFloor;
                 }
             }
         }
-    }
 
+    }
 }
