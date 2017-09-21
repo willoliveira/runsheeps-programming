@@ -42,7 +42,7 @@ namespace CountingSheeps.RunSheepsRun
             //refatorar esse cara depois
             //InstantiatePlayer();
 
-            //mRigidbody2D.isKinematic = true;
+            mRigidbody2D.isKinematic = true;
         }
 
         void FixedUpdate()
@@ -57,6 +57,8 @@ namespace CountingSheeps.RunSheepsRun
             {
                 Animator anim = GetComponent<Animator>();
                 anim.speed = 1;
+
+                mRigidbody2D.velocity = new Vector2(MaxSpeed, mRigidbody2D.velocity.y);
 
                 mRigidbody2D.isKinematic = false;
                 if (Jump)
@@ -107,6 +109,7 @@ namespace CountingSheeps.RunSheepsRun
         /// <param name="coll"></param>
         private void OnCollisionEnter2D(Collision2D coll)
         {
+            //Debug.Log(coll.gameObject);
             if (coll.gameObject.tag == "Wall")
             {
                 gameScreen.OnGameOver();
@@ -118,6 +121,7 @@ namespace CountingSheeps.RunSheepsRun
         /// <param name="other"></param>
         void OnTriggerEnter2D(Collider2D coll)
         {
+            Debug.Log(coll.gameObject.tag);
             if (coll.gameObject.tag == "ScorePoint")
             {
                 //avisa o game que o personagem já, colidiu com a zona de score

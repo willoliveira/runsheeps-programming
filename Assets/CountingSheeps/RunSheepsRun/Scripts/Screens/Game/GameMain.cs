@@ -5,7 +5,6 @@ using System.Collections;
 namespace CountingSheeps.RunSheepsRun
 {
 
-    // TODO: FAZER UM METODO GENERICO PARA POP UP
     public class GameMain : MonoBehaviour
     {
 
