@@ -14,6 +14,7 @@ namespace CountingSheeps.RunSheepsRun {
         [Header("Prefabs")]
         public GameObject FloorContainer;
         public GameObject ObstaclesContainer;
+        public GameObject PointReferenceFloor;
         public GameObject SpawnPosition;
         public GameObject World;
 
@@ -57,7 +58,7 @@ namespace CountingSheeps.RunSheepsRun {
             
             instanceFloor.transform.position = new Vector2(
                 -CameraHorizontalSize,
-                SpawnPosition.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y)
+                PointReferenceFloor.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y)
             );
             
 
@@ -65,7 +66,7 @@ namespace CountingSheeps.RunSheepsRun {
             
             instanceFloor2.transform.position = new Vector2(
                 (instanceFloor.transform.position.x + (instanceFloorBox2D.size.x * instanceFloor.transform.localScale.x)),
-                SpawnPosition.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y)
+                PointReferenceFloor.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y)
             );
 
 
@@ -73,7 +74,7 @@ namespace CountingSheeps.RunSheepsRun {
 
             previousFloor.transform.position = new Vector2(
                 (instanceFloor2.transform.position.x + (instanceFloorBox2D.size.x * instanceFloor2.transform.localScale.x)),
-                SpawnPosition.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y)
+                PointReferenceFloor.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y)
             );
         }
 
@@ -96,19 +97,21 @@ namespace CountingSheeps.RunSheepsRun {
             if (!GameManager.Pause)
             {
                 TimeGame += Time.deltaTime;
+                //distancia em metros
                 DistanceGame = (TimeGame * worldSpeed);
 
                 //da spawn dos obstaculos
                 if (DistanceGame > ActualDistance)
                 {
-                    float RandomDistance = Random.Range(SeveralMinToSpawn, DistanceToSpawnMax);
+                    //Debug.Log("(DistanceGame > ActualDistance) | DistanceGame: " + DistanceGame + " ActualDistance: " + ActualDistance);
+                    float RandomDistance = Random.Range(DistanceToSpawnMin, DistanceToSpawnMax);
                     ActualDistance = DistanceGame + RandomDistance;
 
                     GameObject instanceObstacle = Instantiate<GameObject>(ListObstacles[Random.Range(0, 2)].Prefab, ObstaclesContainer.transform, true);
                     BoxCollider2D instancObstacleBox2D = instanceObstacle.GetComponent<BoxCollider2D>();
 
-                    float ObstacleY = SpawnPosition.transform.position.y;
-                    float ObstacleX = previousFloor.transform.position.x + (instancObstacleBox2D.size.x * instanceObstacle.transform.localScale.x);
+                    float ObstacleY = PointReferenceFloor.transform.position.y;
+                    float ObstacleX = Camera.main.transform.position.x + (CameraHorizontalSize * 1.5f);
                     instanceObstacle.transform.position =  new Vector2(ObstacleX, ObstacleY);
                 }
 
@@ -121,7 +124,7 @@ namespace CountingSheeps.RunSheepsRun {
                     GameObject instanceFloor = Instantiate<GameObject>(ListFloors[0], FloorContainer.transform, true);
                     BoxCollider2D instanceFloorBox2D = instanceFloor.GetComponent<BoxCollider2D>();
 
-                    float FloorPosY = SpawnPosition.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y);
+                    float FloorPosY = PointReferenceFloor.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y);
                     float FloorPosX = previousFloor.transform.position.x + (instanceFloorBox2D.size.x * instanceFloor.transform.localScale.x);
                     instanceFloor.transform.position = new Vector2(FloorPosX, FloorPosY);
 

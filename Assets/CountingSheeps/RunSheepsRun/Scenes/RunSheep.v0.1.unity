@@ -1377,7 +1377,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2025936029}
+  - {fileID: 1730437518}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1409,16 +1411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01fc1c38ef10e424ba7e478528bc967a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMarginBeforeMove: 2
-  yMarginBeforeMove: 1
-  xMargin: 8
-  yMargin: 1
+  xMarginLeft: 6
   xSmooth: 3
-  ySmooth: 3
-  maxXAndY: {x: 0, y: 0}
-  minXAndY: {x: 0, y: 0}
-  smoothTimeX: 0
-  smoothTimeY: 0
   target: {fileID: 1366006658}
 --- !u!1 &385323620
 GameObject:
@@ -1430,7 +1424,7 @@ GameObject:
   - component: {fileID: 385323621}
   - component: {fileID: 385323622}
   m_Layer: 25
-  m_Name: SpawnObjects
+  m_Name: PointReferenceFloor
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1447,7 +1441,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1595890924}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &385323622
 BoxCollider2D:
@@ -4806,6 +4800,7 @@ GameObject:
   - component: {fileID: 1366006656}
   - component: {fileID: 1366006655}
   - component: {fileID: 1366006654}
+  - component: {fileID: 1366006659}
   - component: {fileID: 1366006653}
   m_Layer: 25
   m_Name: Player
@@ -4841,7 +4836,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05111599, y: -1.0336971}
+  m_Offset: {x: -0.05111599, y: -0.66442907}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4852,7 +4847,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.401853, y: 2.3873944}
+  m_Size: {x: 1.401853, y: 1.6488583}
   m_EdgeRadius: 0
 --- !u!50 &1366006655
 Rigidbody2D:
@@ -4940,13 +4935,28 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1366006652}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.18, y: -3.02, z: 2.5333}
+  m_LocalPosition: {x: -0.43, y: -3.02, z: 2.5333}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 480420473}
   m_Father: {fileID: 1595890924}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1366006659
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1366006652}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05792445, y: -1.5}
+  serializedVersion: 2
+  m_Radius: 0.69828653
 --- !u!1 &1367088669
 GameObject:
   m_ObjectHideFlags: 0
@@ -5322,7 +5332,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1366006658}
-  - {fileID: 2025936029}
   - {fileID: 385323621}
   m_Father: {fileID: 1170715634}
   m_RootOrder: 1
@@ -5711,6 +5720,60 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1707081004}
+--- !u!1 &1730437517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1730437518}
+  - component: {fileID: 1730437519}
+  m_Layer: 25
+  m_Name: SpawnObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1730437518
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1730437517}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23.35, y: -6.01, z: 13.0333}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 378425648}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1730437519
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1730437517}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1774292122
 GameObject:
   m_ObjectHideFlags: 0
@@ -6137,7 +6200,8 @@ MonoBehaviour:
   - {fileID: 1757566464296990, guid: 57a8f13eee931ee46b7484538123024d, type: 2}
   FloorContainer: {fileID: 517038943}
   ObstaclesContainer: {fileID: 1104882131}
-  SpawnPosition: {fileID: 385323620}
+  PointReferenceFloor: {fileID: 385323620}
+  SpawnPosition: {fileID: 1730437517}
   World: {fileID: 2081403269}
   SeveralMinToSpawn: 8
   DistanceToSpawnMin: 12
@@ -6493,11 +6557,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2025936028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.12, y: -1.49, z: 0}
+  m_LocalPosition: {x: -26.12, y: -1.49, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1595890924}
-  m_RootOrder: 1
+  m_Father: {fileID: 378425648}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2025936030
 BoxCollider2D:
@@ -6511,7 +6575,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13699913, y: 5.6355867}
+  m_Offset: {x: -0.13699913, y: 1.6079683}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6522,7 +6586,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.7493868, y: 14.016535}
+  m_Size: {x: 3.7493868, y: 19.897348}
   m_EdgeRadius: 0
 --- !u!50 &2025936031
 Rigidbody2D:
