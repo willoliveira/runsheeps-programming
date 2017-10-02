@@ -43,39 +43,39 @@ namespace CountingSheeps.RunSheepsRun {
 
         private float CameraHorizontalSize;
 
-        private void Awake()
-        {
+		private void Awake()
+		{
+			InitialSpawnObjects();
+		}
+
+		public void InitialSpawnObjects() { 
             randomObj = new Random();
             ActualDistance = Time.time;
 
             /**
-             * TODO: Calcular tamanho da camera e colocar os obstaculos o suficiente para preencher a vista da camera na primeira vez;
+             * TODO: Refatorar o lance da camera, ter mais controle sobre ela
              */
             CameraHorizontalSize = Camera.main.orthographicSize * Screen.width / Screen.height;
+			
 
-            GameObject instanceFloor = Instantiate<GameObject>(ListFloors[0], FloorContainer.transform, true);
-            BoxCollider2D instanceFloorBox2D = instanceFloor.GetComponent<BoxCollider2D>();
-            
-            instanceFloor.transform.position = new Vector2(
-                -CameraHorizontalSize,
-                PointReferenceFloor.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y)
-            );
-            
+			BoxCollider2D cacheBoxCollider2D = ListFloors[0].GetComponent<BoxCollider2D>();
+			Transform cacheTransform = ListFloors[0].transform;
 
-            GameObject instanceFloor2 = Instantiate<GameObject>(ListFloors[0], FloorContainer.transform, true);
-            
-            instanceFloor2.transform.position = new Vector2(
-                (instanceFloor.transform.position.x + (instanceFloorBox2D.size.x * instanceFloor.transform.localScale.x)),
-                PointReferenceFloor.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y)
-            );
+			int NumPlatforms = Mathf.CeilToInt((CameraHorizontalSize * 4) / (cacheBoxCollider2D.size.x * cacheTransform.localScale.x));
+			float pointPositionY = PointReferenceFloor.transform.position.y - ((cacheBoxCollider2D.size.y / 2) * cacheTransform.localScale.y);
 
+			GameObject previousInstanceFloor = null;
+			GameObject instanceFloor = Instantiate<GameObject>(ListFloors[0], new Vector3(-CameraHorizontalSize, pointPositionY), Quaternion.identity, FloorContainer.transform);
+			for (int cont = 0, len = NumPlatforms; cont < len; cont++)
+			{
+				if (previousInstanceFloor)
+				{
+					instanceFloor = Instantiate<GameObject>(ListFloors[0], new Vector3((previousInstanceFloor.transform.position.x + (cacheBoxCollider2D.size.x * previousInstanceFloor.transform.localScale.x)), pointPositionY), Quaternion.identity, FloorContainer.transform);
+				}
+				previousInstanceFloor = instanceFloor;
+			}
 
-            previousFloor = Instantiate<GameObject>(ListFloors[0], FloorContainer.transform, true);
-
-            previousFloor.transform.position = new Vector2(
-                (instanceFloor2.transform.position.x + (instanceFloorBox2D.size.x * instanceFloor2.transform.localScale.x)),
-                PointReferenceFloor.transform.position.y - ((instanceFloorBox2D.size.y / 2) * instanceFloor.transform.localScale.y)
-            );
+			previousFloor = previousInstanceFloor;
         }
 
         private void FixedUpdate()
@@ -114,9 +114,7 @@ namespace CountingSheeps.RunSheepsRun {
                     float ObstacleX = Camera.main.transform.position.x + (CameraHorizontalSize * 1.5f);
                     instanceObstacle.transform.position =  new Vector2(ObstacleX, ObstacleY);
                 }
-
-                //Debug.Log(previousFloor.transform.position.x + " <  " + CameraHorizontalSize);
-                //Debug.Log(previousFloor.transform.position.x + " <  " + (CameraHorizontalSize + player.transform.position.x));
+				
 
                 //da spawn dos plataformas
                 if (previousFloor && previousFloor.transform.position.x < (CameraHorizontalSize + Camera.main.transform.position.x))
