@@ -81,6 +81,8 @@ namespace CountingSheeps.RunSheepsRun
             GameManager.Pause = false;
             //quando a tela termina de sair, desativa ela
             gameObject.SetActive(false);
+
+			EventManager.TriggerEvent("GAME_EXIT");
         }
         /// <summary>
         /// Retart game

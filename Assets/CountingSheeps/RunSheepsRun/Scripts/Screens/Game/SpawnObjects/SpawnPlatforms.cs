@@ -15,6 +15,8 @@ namespace CountingSheeps.RunSheepsRun {
 			base.Start();
 
 			InitialPlatformObjects();
+
+			EventManager.StartListening("GAME_EXIT", DestroyPlatforms);
 		}
 
 	    /**
@@ -83,10 +85,26 @@ namespace CountingSheeps.RunSheepsRun {
 				float FloorPosX = RandomDistance + previousFloor.transform.position.x + (instanceFloorBox2D.size.x * instanceFloor.transform.localScale.x);
 				instanceFloor.transform.position = new Vector2(FloorPosX, FloorPosY);
 
-				Debug.Log("RandomDistance: " + RandomDistance);
-
 				previousFloor = instanceFloor;
 			}
         }
+
+		private void Clear()
+		{
+			RandomDistance = 0f;
+		}
+
+		private void DestroyPlatforms()
+		{
+			this.Clear();
+
+			foreach (Transform platformChild in ElementContainer.transform)
+			{
+				Destroy(platformChild.gameObject);
+			}
+
+			this.InitialPlatformObjects();
+
+		}
     }
 }

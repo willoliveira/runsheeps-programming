@@ -7,12 +7,26 @@ namespace CountingSheeps.RunSheepsRun
 
     public class DiscardElements : MonoBehaviour
     {
-        void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.tag == "ElementGame" || collision.gameObject.tag == "Ground")
-            {
-                Destroy(collision.gameObject);
-            }
-        }
-    }
+		private void Start()
+		{
+			
+		}
+
+		private void OnCollisionEnter2D(Collision2D collision)
+		{
+			Debug.Log(collision.gameObject.tag);
+		}
+		/// <summary>
+		/// Colider do player
+		/// </summary>
+		/// <param name="coll"></param>
+		private void OnCollisionExit2D(Collision2D collision)
+		{
+			Debug.Log(collision.gameObject.tag);
+			if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "ElementGame")
+			{
+				Destroy(collision.gameObject);
+			}
+		}
+	}
 }
