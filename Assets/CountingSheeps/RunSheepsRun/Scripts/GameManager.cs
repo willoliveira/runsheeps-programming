@@ -15,6 +15,11 @@ namespace CountingSheeps.RunSheepsRun
 {
     public class GameManager : MonoBehaviour
     {
+        #region PRIVATE VARS
+        private static bool pauseGame;
+        private static GameManager gameManager;
+        private static Screens currentScreen;
+        #endregion
 
         #region PUBLIC VARS
         public static GameManager Instance
@@ -75,11 +80,6 @@ namespace CountingSheeps.RunSheepsRun
         //GameSettings
         #endregion
 
-        #region PRIVATE VARS
-        private static bool pauseGame;
-        private static GameManager gameManager;
-        private static Screens currentScreen;
-        #endregion
 
         void Awake()
         {

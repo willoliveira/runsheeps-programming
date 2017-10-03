@@ -9,7 +9,8 @@ namespace CountingSheeps.RunSheepsRun
     public enum ElementTypeEnum
     {
         Collectable,
-        Obstacle
+        Obstacle,
+		Platform
     }
 
     public enum ScenaryEnum

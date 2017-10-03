@@ -14,8 +14,6 @@ namespace CountingSheeps.RunSheepsRun
         private void Awake()
         {
             CameraHorizontalSize = Camera.main.orthographicSize* Screen.width / Screen.height;
-            Debug.Log(CameraHorizontalSize);
-            Debug.Log(PositionX());
         }
 
         float PositionX()
@@ -25,7 +23,7 @@ namespace CountingSheeps.RunSheepsRun
 
         void FixedUpdate()
         {
-            float targetX = Mathf.Lerp(transform.position.x, PositionX(), xSmooth * Time.deltaTime);
+			float targetX = PositionX(); //Mathf.Lerp(transform.position.x, PositionX(), xSmooth * Time.deltaTime);
             float targetY = transform.position.y;
 
             transform.position = new Vector3(targetX, targetY, transform.position.z);
