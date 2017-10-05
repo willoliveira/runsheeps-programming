@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
   - GameScreen
-  - StoreScreen
   - RankingScreen
+  - StoreScreen
+  - TitleScreen

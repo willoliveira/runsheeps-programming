@@ -60,6 +60,7 @@ namespace CountingSheeps.RunSheepsRun
         /// </summary>
         public void ScreenOpen()
         {
+			Debug.Log("ScreenOpen GameScreen");
             //quando reseta a jogada
             firstPlay = true;
             beforePause = false;
@@ -77,7 +78,9 @@ namespace CountingSheeps.RunSheepsRun
         /// </summary>
         public void ScreenExit()
         {
-            firstPlay = true;
+			Debug.Log("ScreenExit GameScreen");
+
+			firstPlay = true;
             GameManager.Pause = false;
             //quando a tela termina de sair, desativa ela
             gameObject.SetActive(false);

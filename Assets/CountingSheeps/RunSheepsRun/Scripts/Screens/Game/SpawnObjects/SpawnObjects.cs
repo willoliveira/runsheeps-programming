@@ -29,10 +29,9 @@ namespace CountingSheeps.RunSheepsRun {
 		[HideInInspector] protected float TimeGame = 0f;
 		[HideInInspector] protected float DistanceGame;
 		[HideInInspector] protected float CameraHorizontalSize;
-
+		
 		protected virtual void Start()
 		{
-			Debug.Log("START");
             ActualDistance = Time.time;
 			CameraHorizontalSize = Camera.main.orthographicSize * Screen.width / Screen.height;
 		}

@@ -16,7 +16,7 @@ namespace CountingSheeps.RunSheepsRun
 
         public void ScreenExit()
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
 
         public void OnInitGame()

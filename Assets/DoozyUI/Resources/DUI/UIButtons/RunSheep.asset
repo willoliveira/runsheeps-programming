@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: RunSheep
   m_EditorClassIdentifier: 
   data:
-  - BtStore
-  - BtRanking
   - BtBack
+  - BtRanking
+  - BtStore
+  - BtGame

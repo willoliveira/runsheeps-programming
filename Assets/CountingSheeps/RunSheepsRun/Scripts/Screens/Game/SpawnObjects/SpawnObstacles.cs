@@ -9,6 +9,13 @@ namespace CountingSheeps.RunSheepsRun {
 
         private Random random;
 
+		protected override void Start()
+		{
+			base.Start();
+			
+			EventManager.StartListening("GAME_EXIT", DestroyObstacles);
+		}
+
 		protected override void Update()
         {
 			base.Update();
@@ -33,5 +40,14 @@ namespace CountingSheeps.RunSheepsRun {
             }
         }
 
-    }
+		private void DestroyObstacles()
+		{
+			foreach (Transform platformChild in ElementContainer.transform)
+			{
+				Destroy(platformChild.gameObject);
+			}
+		}
+
+
+	}
 }
