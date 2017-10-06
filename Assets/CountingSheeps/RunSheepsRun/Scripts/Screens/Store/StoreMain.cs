@@ -147,7 +147,7 @@ namespace CountingSheeps.RunSheepsRun
 		/// </summary>
 		private void CreateScrollSnap()
 		{
-			GameObject ContainerSlides = ScrollRect.GetComponentsInChildren<GameObject>().ElementAt<GameObject>(0);
+			GameObject ContainerSlides = ScrollRect.transform.GetChild(0).transform.gameObject;
 			//Debug.Log(config.ListCharacters.Count);
 			//TODO: Tentar fazer esse sort de novo depois
 			//listChars.Sort((a, b) => a.order);
