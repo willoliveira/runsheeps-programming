@@ -5,10 +5,12 @@ namespace CountingSheeps.RunSheepsRun
 {
     public class TitleScreen : MonoBehaviour
     {
+		private void Start()
+		{
+			
+		}
 
-        public GameObject mCamera;
-
-        public void ScreenOpen()
+		public void ScreenOpen()
         {
             //seta e tela atual
             GameManager.CurrentScreen = Screens.Title;
@@ -16,13 +18,7 @@ namespace CountingSheeps.RunSheepsRun
 
         public void ScreenExit()
         {
-            //gameObject.SetActive(false);
-        }
 
-        public void OnInitGame()
-        {
-            //Inicia a animação da camera
-            //mCamera.GetComponent<Animator>().SetTrigger("StartGame");
         }
     }
 }

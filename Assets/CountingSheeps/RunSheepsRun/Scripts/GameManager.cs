@@ -12,18 +12,20 @@ public enum Screens
 }
 
 
+public enum StatusGame
+{
+	InGame,
+	OutGame
+}
+
 namespace CountingSheeps.RunSheepsRun
 {
     public class GameManager : MonoBehaviour
     {
-        #region PRIVATE VARS
-        private static bool pauseGame;
         private static GameManager gameManager;
-        private static Screens currentScreen;
-        #endregion
 
-        #region PUBLIC VARS
-        public static GameManager Instance
+		#region PUBLIC VARS
+		public static GameManager Instance
         {
             get
             {
@@ -40,50 +42,32 @@ namespace CountingSheeps.RunSheepsRun
             }
         }
 
-        public static bool Pause
-        {
-            get { return pauseGame; }
-            set { pauseGame = value; }
-        }
+		public static bool Pause;
 
-        public static Screens CurrentScreen
-        {
-            get { return currentScreen; }
-            set { currentScreen = value; }
-        }
+		public static Screens CurrentScreen;
 
-        //GameSettings
-        public int coins;
+		public static StatusGame Status;
+
+		
+		public int coins;
         public static int Coins
         {
             get { return Instance.coins; }
             set { Instance.coins = value; }
         }
 
-        public CharacterDefinition defaultCharacter;
-        public static CharacterDefinition DefaultCharacter
-        {
-            get { return Instance.defaultCharacter; }
-        }
+		public static CharacterDefinition DefaultCharacter;
 
-        public CharacterDefinition characterSelect;
-        public static CharacterDefinition CharacterSelect
-        {
-            get { return Instance.characterSelect; }
-            set { Instance.characterSelect = value; }
-        }
+		public static CharacterDefinition CharacterSelect;
 
-        public List<CharacterDefinition> listCharacters = new List<CharacterDefinition>();
-        public static List<CharacterDefinition> ListCharacters
-        {
-            get { return Instance.listCharacters; }
-        }
-        //GameSettings
-        #endregion
+		public static List<CharacterDefinition> ListCharacters;
+		#endregion
 
 
-        void Awake()
+		void Awake()
         {
+			ListCharacters = new List<CharacterDefinition>();
+			Status = StatusGame.OutGame;
             Application.targetFrameRate = 30;
         }
     }

@@ -12,7 +12,6 @@ namespace CountingSheeps.RunSheepsRun
         public GameObject GameOverScreen;
         public GameObject QuitGame;
         public GameObject ReturnGame;
-        public GameObject mCamera;
 
         public Text ScoreText;
         //quando der game over
@@ -59,8 +58,7 @@ namespace CountingSheeps.RunSheepsRun
         /// Chamado com a janela é aberta
         /// </summary>
         public void ScreenOpen()
-        {
-			Debug.Log("ScreenOpen GameScreen");
+        {;
             //quando reseta a jogada
             firstPlay = true;
             beforePause = false;
@@ -71,21 +69,21 @@ namespace CountingSheeps.RunSheepsRun
             //seta e tela atual
             GameManager.CurrentScreen = Screens.Game;
             //inicia o game
-            gameMain.InitGame();
+            gameMain.Init();
         }
         /// <summary>
         /// Chamado com a janela é fechada
         /// </summary>
         public void ScreenExit()
         {
-			Debug.Log("ScreenExit GameScreen");
+			EventManager.TriggerEvent("GAME_EXIT");
 
 			firstPlay = true;
             GameManager.Pause = false;
             //quando a tela termina de sair, desativa ela
             gameObject.SetActive(false);
 
-			EventManager.TriggerEvent("GAME_EXIT");
+			gameMain.Destroy();
         }
         /// <summary>
         /// Retart game
@@ -147,21 +145,6 @@ namespace CountingSheeps.RunSheepsRun
             QuitGame.SetActive(false);
             //Despausa o jogo
             GameManager.Pause = false;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public void OnScoreGoal()
-        {
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public void OnScorePoint()
-        {
-            //Score++;
-            ScoreText.text = string.Format("{0:000}", Score);
         }
         #endregion
 

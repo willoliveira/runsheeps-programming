@@ -10,9 +10,14 @@ namespace CountingSheeps.RunSheepsRun {
         private GameObject previousFloor;
 		private float RandomDistance = 0f;
 
-		protected override void Start()
+		private void Start()
 		{
-			base.Start();
+			this.Init();
+		}
+
+		public override void Init()
+		{
+			base.Init();
 
 			InitialPlatformObjects();
 

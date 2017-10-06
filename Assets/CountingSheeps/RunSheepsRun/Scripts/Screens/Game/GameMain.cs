@@ -14,7 +14,7 @@ namespace CountingSheeps.RunSheepsRun
 
         #region PRIVATE VARS
         private GameScreen gameReference;
-        private SpawnObjects spawnObjects;
+        private SpawnObstacles spawnObstacles;
 
         //flag de inicio de jogo
         private bool flagInitGame = false;
@@ -22,7 +22,7 @@ namespace CountingSheeps.RunSheepsRun
 
         private void Awake()
         {
-            spawnObjects = GetComponent<SpawnObjects>();
+			spawnObstacles = GetComponent<SpawnObstacles>();
         }
 
         private void Update()
@@ -42,19 +42,26 @@ namespace CountingSheeps.RunSheepsRun
         /// <summary>
         /// Inicializa o game
         /// </summary>
-        public void InitGame()
+        public void Init()
         {
             //seta o inicio do jogo
             flagInitGame = true;
 
-            spawnObjects.gameObject.SetActive(true);
+			spawnObstacles.Init();
+
+			GameManager.Status = StatusGame.InGame;
         }
 
+		public void Destroy()
+		{
+			spawnObstacles.Destroy();
+			GameManager.Status = StatusGame.OutGame;
+		}
 
-        #endregion
+		#endregion
 
-        #region PRIVATE_METHODS
-        private void UpdateChar()
+		#region PRIVATE_METHODS
+		private void UpdateChar()
         {
             if (Input.GetButtonDown("Jump") || Input.touchCount > 0)
             {

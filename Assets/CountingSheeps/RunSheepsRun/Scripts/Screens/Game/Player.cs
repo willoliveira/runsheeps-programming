@@ -103,42 +103,7 @@ namespace CountingSheeps.RunSheepsRun
 		{
 			transform.position = new Vector2(0f, transform.position.y);
 		}
-
-		#region COLLIDERS
-		/// <summary>
-		/// Colider do player
-		/// </summary>
-		/// <param name="coll"></param>
-		//private void OnCollisionExit2D(Collision2D coll)
-  //      {
-		//	Debug.Log(coll.gameObject.tag);
-		//	if (coll.gameObject.tag == "Ground" || coll.gameObject.tag == "ElementGame")
-  //          {
-		//		Destroy(coll.gameObject);
-  //          }
-  //      }
-        /// <summary>
-        /// Collider trigger da zona de score
-        /// </summary>
-        /// <param name="other"></param>
-        //void OnTriggerEnter2D(Collider2D coll)
-        //{
-        //    Debug.Log(coll.gameObject.tag);
-        //    if (coll.gameObject.tag == "ScorePoint")
-        //    {
-        //        //avisa o game que o personagem já, colidiu com a zona de score
-        //        gameScreen.OnScoreGoal();
-        //    }
-        //    else if (coll.gameObject.tag == "DiscardSheep")
-        //    {
-        //        //Seta o ponto
-        //        gameScreen.OnScorePoint();
-        //        //pode descartar o char
-        //        CanDiscardChar = true;
-        //    }
-        //}
-        #endregion
-
+		
         #endregion
     }
 }

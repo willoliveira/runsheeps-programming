@@ -9,18 +9,23 @@ namespace CountingSheeps.RunSheepsRun {
 
         private Random random;
 
-		protected override void Start()
+		public override void Init()
 		{
-			base.Start();
+			base.Init();
 			
 			EventManager.StartListening("GAME_EXIT", DestroyObstacles);
+		}
+
+		public void Destroy()
+		{
+			EventManager.StopListening("GAME_EXIT", DestroyObstacles);
 		}
 
 		protected override void Update()
         {
 			base.Update();
 
-			if (!GameManager.Pause)
+			if (!GameManager.Pause && GameManager.Status == StatusGame.InGame)
             {
                 //da spawn dos obstaculos
                 if (DistanceGame > ActualDistance)

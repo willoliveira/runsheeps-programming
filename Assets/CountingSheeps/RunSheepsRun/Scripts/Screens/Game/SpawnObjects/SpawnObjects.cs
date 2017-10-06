@@ -25,12 +25,17 @@ namespace CountingSheeps.RunSheepsRun {
         [Header("Score")]
         public Text score;
 		
-		[HideInInspector] protected float ActualDistance = 0f;
+		[HideInInspector] protected float ActualDistance = 0f; //fix: no começo precisa ser maior
 		[HideInInspector] protected float TimeGame = 0f;
-		[HideInInspector] protected float DistanceGame;
+		[HideInInspector] protected float DistanceGame = 0f;
 		[HideInInspector] protected float CameraHorizontalSize;
-		
-		protected virtual void Start()
+
+		private void Start()
+		{
+			
+		}
+
+		public virtual void Init()
 		{
             ActualDistance = Time.time;
 			CameraHorizontalSize = Camera.main.orthographicSize * Screen.width / Screen.height;

@@ -7,13 +7,7 @@ namespace CountingSheeps.RunSheepsRun
     {
 
         // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
+        private void Start()
         {
 
         }
@@ -26,7 +20,7 @@ namespace CountingSheeps.RunSheepsRun
 
         public void ScreenExit()
         {
-            gameObject.SetActive(false);
+
         }
     }
 }
