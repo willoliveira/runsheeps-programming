@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
+using DoozyUI;
+
 namespace CountingSheeps.RunSheepsRun
 {
     // TODO: FAZER UM METODO GENERICO PARA POP UP
@@ -44,8 +46,9 @@ namespace CountingSheeps.RunSheepsRun
 
             if (!firstPlay && afterPause && beforePause != afterPause)
             {
-                StartCoroutine(returnGame());
-            }
+				returnGame();
+				//StartCoroutine(returnGame());
+			}
             else
             {
                 firstPlay = false;
@@ -55,7 +58,7 @@ namespace CountingSheeps.RunSheepsRun
 
         #region PUBLIC METHODS
         /// <summary>
-        /// Chamado com a janela é aberta
+        /// Chamado quando a janela é aberta
         /// </summary>
         public void ScreenOpen()
         {;
@@ -72,10 +75,12 @@ namespace CountingSheeps.RunSheepsRun
             gameMain.Init();
         }
         /// <summary>
-        /// Chamado com a janela é fechada
+        /// Chamado quando a janela é fechada
         /// </summary>
         public void ScreenExit()
         {
+			Debug.Log("ScreenExit");
+
 			EventManager.TriggerEvent("GAME_EXIT");
 
 			firstPlay = true;
@@ -119,11 +124,20 @@ namespace CountingSheeps.RunSheepsRun
         /// 
         /// </summary>
         public void OnGameQuitOpen()
-        {
+		{
+			//UIButton backButton = GetComponent<UIButton>();
+			//backButton.onClickNavigation.show.Add(new NavigationPointer("RunSheep", "TitleScreen"));
+			//backButton.onClickNavigation.hide.Add(new NavigationPointer("RunSheep", "GameScreen"));
+
+			Debug.Log(" OnGameQuitOpen");
             if (!gameOverGame)
             {
+				QuitGame.SetActive(true);
+
+				UIElement QuitGameUIElement = QuitGame.GetComponent<UIElement>();
+				QuitGameUIElement.Show(false);
+
                 //habilita a tela
-                QuitGame.SetActive(true);
                 //Pausa o jogo
                 GameManager.Pause = true;
             }
@@ -134,7 +148,7 @@ namespace CountingSheeps.RunSheepsRun
         public void OnQuitGame()
         {
             //desabilita a tela
-            QuitGame.SetActive(false);
+            //QuitGame.SetActive(false);
         }
         /// <summary>
         /// 
@@ -142,25 +156,29 @@ namespace CountingSheeps.RunSheepsRun
         public void OnQuitGameCancel()
         {
             //desabilita a tela
-            QuitGame.SetActive(false);
+            //QuitGame.SetActive(false);
             //Despausa o jogo
             GameManager.Pause = false;
         }
-        #endregion
 
-        #region PRIVATE METHODS
-        private IEnumerator returnGame()
+		public void onReturnGame()
+		{
+			Debug.Log("onReturnGame");
+			GameManager.Pause = false;
+			firstPlay = true;
+
+			ReturnGame.SetActive(false);
+		}
+		#endregion
+
+		#region PRIVATE METHODS
+		private void returnGame()
         {
             GameManager.Pause = true;
-            //habilita a tela
-            ReturnGame.SetActive(true);
-            //chama a rotina que conta o tempo antes de voltar
-            yield return StartCoroutine(ReturnGame.GetComponent<ReturnGame>().CountReturn());
-            //habilita a tela
-            ReturnGame.SetActive(false);
-            //despausa o jogo
-            GameManager.Pause = false;
-            firstPlay = true;
+			UIElement ReturnGameUE = ReturnGame.GetComponent<UIElement>();
+			//habilita a tela
+			ReturnGame.SetActive(true);
+			ReturnGameUE.Show(false);
         }
         #endregion
     }

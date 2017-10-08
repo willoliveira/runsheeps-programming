@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: RunSheep
   m_EditorClassIdentifier: 
   data:
+  - ContinueGame
   - GameScreen
   - RankingScreen
   - StoreScreen
   - TitleScreen
+  - CounterPopup
