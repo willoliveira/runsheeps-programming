@@ -145,14 +145,6 @@ namespace CountingSheeps.RunSheepsRun
         /// <summary>
         /// 
         /// </summary>
-        public void OnQuitGame()
-        {
-            //desabilita a tela
-            //QuitGame.SetActive(false);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
         public void OnQuitGameCancel()
         {
             //desabilita a tela
